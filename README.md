@@ -22,6 +22,15 @@ An old-timey newspaper-style digest of today's top Bitcoin and cryptocurrency st
 | 12 | Russia Targets British Teen Over Crypto Sanctions Claims |
 | 13 | Senate Republicans Push for Crypto Capital Rule Clarity |
 
+### Daily Podcast 🎙️
+
+Each edition of The Daily Cryptograph comes with a ~3-minute audio news briefing.
+
+- **Latest episode:** [`podcast/latest.mp3`](podcast/latest.mp3)
+- **Today's episode:** [`podcast/2026-06-05.mp3`](podcast/2026-06-05.mp3)
+
+The podcast is auto-generated daily alongside the newspaper.
+
 ### Viewing
 
 Open **index.html** in any browser. No build step or server required.
