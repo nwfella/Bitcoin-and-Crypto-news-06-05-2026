@@ -1,0 +1,15 @@
+Good morning. This is The Daily Cryptograph for Friday, June 5th, 2026. Here is your crypto news briefing.
+
+Markets: Bitcoin is holding at sixty-two thousand, five hundred and seventy-two dollars, up slightly. Ethereum is trading at one thousand, six hundred and seventy-five dollars, up nearly five percent on the day. Solana is down three percent at sixty-six dollars. The big story today is Zcash, which has collapsed nearly sixty percent after the disclosure of a critical security vulnerability.
+
+In today's top story: Zcash plunged thirty percent after Shielded Labs revealed details of an infinite counterfeit bug in its privacy protocol. The vulnerability could have allowed attackers to mint unlimited ZEC tokens. While the bug has been patched, the market wiped nearly three billion dollars in value, and questions are being raised about the security guarantees of zero-knowledge proof systems.
+
+Next: Strategy's leveraged Bitcoin model is facing its first real stress test. Grayscale published a report analyzing the risks after Bitcoin fell twenty-one percent on the company's debt buyback news. With over two hundred thousand Bitcoin on the balance sheet financed through convertible debt, analysts are watching closely for any signs of forced liquidation.
+
+In regulatory news: South Korean police have launched an investigation into Polymarket users over illegal gambling claims. Meanwhile, SEC Commissioner Hester Peirce argued that publishing DeFi code is protected speech under the First Amendment. And Senate Republicans are pushing financial regulators to clarify crypto capital rules.
+
+On the adoption front: Coinbase will launch token-backed mortgage down payments this summer, allowing homebuyers to use crypto as collateral for their down payment. And professional investors dumped fifty-two thousand Bitcoin worth of ETFs in the first quarter, though long-term holders largely maintained their positions.
+
+Rounding out the day: Crypto billionaires are bankrolling Nigel Farage's pro-crypto party in the UK, and Russia has targeted a seventeen-year-old British national for alleging digital assets are being used to skirt sanctions.
+
+That's your crypto news for Friday, June 5th, 2026. This has been The Daily Cryptograph. All the news that's fit to mint.
