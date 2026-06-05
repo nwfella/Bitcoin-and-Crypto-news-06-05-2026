@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Daily Cryptograph</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=UnifrakturMaguntia&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #d4c9a8;
+    background-image:
+      radial-gradient(ellipse at 20% 50%, rgba(139,119,76,0.08) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 50%, rgba(139,119,76,0.08) 0%, transparent 50%);
+    min-height: 100vh;
+    padding: 40px 20px;
+    font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  }
+
+  .newspaper {
+    max-width: 1200px;
+    margin: 0 auto;
+    background: #f5efe0;
+    background-image:
+      linear-gradient(135deg, #f8f3e6 0%, #f0e9d5 50%, #f5efe0 100%);
+    border: 2px solid #8b774c;
+    box-shadow:
+      0 0 0 1px #a09070,
+      0 0 0 3px #c4b694,
+      0 8px 32px rgba(0,0,0,0.25),
+      inset 0 0 60px rgba(139,119,76,0.06);
+    padding: 0;
+    position: relative;
+  }
+
+  /* Aged paper texture overlay */
+  .newspaper::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(139,119,76,0.02) 2px,
+        rgba(139,119,76,0.02) 4px
+      );
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  /* Decorative top border */
+  .top-ornament {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 30px 0;
+    color: #6b5b3a;
+    font-size: 14px;
+    letter-spacing: 4px;
+    font-family: 'Courier Prime', monospace;
+    text-transform: uppercase;
+  }
+
+  .top-ornament .line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, transparent, #8b774c, transparent);
+  }
+
+  .top-ornament span {
+    padding: 0 18px;
+  }
+
+  /* Masthead */
+  .masthead {
+    text-align: center;
+    padding: 15px 30px 5px;
+    border-bottom: 3px double #6b5b3a;
+    position: relative;
+  }
+
+  .masthead .subtitle {
+    font-family: 'Courier Prime', monospace;
+    font-size: 11px;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    color: #6b5b3a;
+    margin-bottom: 8px;
+  }
+
+  .masthead h1 {
+    font-family: 'UnifrakturMaguntia', 'Playfair Display', serif;
+    font-size: 72px;
+    font-weight: 400;
+    color: #2a2010;
+    letter-spacing: 4px;
+    line-height: 1;
+    text-shadow: 2px 2px 0 rgba(0,0,0,0.05);
+    margin-bottom: 6px;
+  }
+
+  .masthead .date-line {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #5a4a2a;
+    border-top: 1px solid #c4b694;
+    border-bottom: 1px solid #c4b694;
+    padding: 6px 0;
+    font-family: 'Courier Prime', monospace;
+    margin-top: 8px;
+  }
+
+  .masthead .edition {
+    border-top: 1px solid #c4b694;
+    padding: 4px 0;
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: #7a6a4a;
+    text-transform: uppercase;
+    font-family: 'Courier Prime', monospace;
+    font-style: italic;
+  }
+
+  /* Main content grid */
+  .content {
+    padding: 20px 30px 30px;
+    position: relative;
+    z-index: 2;
+  }
+
+  /* Headline story */
+  .headline-story {
+    text-align: center;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #8b774c;
+    margin-bottom: 20px;
+  }
+
+  .headline-story .label {
+    font-family: 'Courier Prime', monospace;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #8b2010;
+    margin-bottom: 10px;
+  }
+
+  .headline-story h2 {
+    font-size: 42px;
+    font-weight: 900;
+    color: #1a1008;
+    line-height: 1.1;
+    margin-bottom: 10px;
+    letter-spacing: -0.5px;
+  }
+
+  .headline-story .subhead {
+    font-size: 18px;
+    font-style: italic;
+    color: #5a4a2a;
+    margin-bottom: 12px;
+    line-height: 1.4;
+  }
+
+  .headline-story .byline {
+    font-size: 13px;
+    color: #6b5b3a;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-family: 'Courier Prime', monospace;
+  }
+
+  .headline-story .byline span {
+    font-style: italic;
+    color: #8b2010;
+    text-transform: none;
+    letter-spacing: 0;
+    font-family: 'Playfair Display', serif;
+  }
+
+  /* Market ticker */
+  .market-ticker {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    gap: 8px;
+    padding: 14px 16px;
+    background: linear-gradient(135deg, #1a1508, #2a2010);
+    border: 1px solid #8b774c;
+    margin-bottom: 24px;
+    font-family: 'Courier Prime', monospace;
+  }
+
+  .ticker-item {
+    text-align: center;
+    padding: 4px 8px;
+    border-right: 1px solid rgba(196,182,148,0.2);
+  }
+
+  .ticker-item:last-child { border-right: none; }
+
+  .ticker-item .coin {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #c4b694;
+  }
+
+  .ticker-item .price {
+    font-size: 15px;
+    font-weight: 700;
+    color: #f0e9d5;
+  }
+
+  .ticker-item .change {
+    font-size: 11px;
+  }
+
+  .change.up { color: #4a9; }
+  .change.down { color: #c44; }
+
+  /* Two column layout */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin-bottom: 20px;
+  }
+
+  .col {
+    min-width: 0;
+  }
+
+  .col-divider {
+    border: none;
+    border-left: 1px solid #c4b694;
+  }
+
+  /* Articles */
+  .article {
+    margin-bottom: 22px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid #d4c9a8;
+  }
+
+  .article:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+  }
+
+  .article h3 {
+    font-size: 22px;
+    font-weight: 700;
+    color: #1a1008;
+    line-height: 1.15;
+    margin-bottom: 6px;
+  }
+
+  .article h3 a {
+    color: #1a1008;
+    text-decoration: none;
+  }
+
+  .article h3 a:hover {
+    color: #8b2010;
+  }
+
+  .article .meta {
+    font-family: 'Courier Prime', monospace;
+    font-size: 11px;
+    color: #7a6a4a;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .article .meta .tag {
+    background: #1a1008;
+    color: #f0e9d5;
+    padding: 1px 6px;
+    font-size: 9px;
+    letter-spacing: 2px;
+    margin-right: 8px;
+  }
+
+  .article p {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #2a2010;
+    margin-bottom: 6px;
+  }
+
+  .article .read-more {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #8b2010;
+    font-family: 'Courier Prime', monospace;
+  }
+
+  .article .read-more a {
+    color: #8b2010;
+    text-decoration: none;
+  }
+
+  .article .read-more a:hover {
+    text-decoration: underline;
+  }
+
+  /* Special feature box */
+  .feature-box {
+    background: linear-gradient(135deg, #f0e9d5, #e8ddc0);
+    border: 2px solid #8b774c;
+    padding: 20px;
+    margin-bottom: 22px;
+    position: relative;
+  }
+
+  .feature-box::before {
+    content: '✦';
+    position: absolute;
+    top: -12px; left: 50%;
+    transform: translateX(-50%);
+    font-size: 20px;
+    color: #8b774c;
+    background: #f5efe0;
+    padding: 0 10px;
+  }
+
+  .feature-box h3 {
+    font-size: 20px;
+    text-align: center;
+    font-weight: 700;
+    color: #1a1008;
+    margin-bottom: 10px;
+  }
+
+  .feature-box p {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #2a2010;
+  }
+
+  /* Three column bottom section */
+  .three-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 24px;
+    border-top: 2px solid #8b774c;
+    padding-top: 20px;
+    margin-top: 20px;
+  }
+
+  .three-col .article h3 {
+    font-size: 17px;
+  }
+
+  /* Bottom rule */
+  .bottom-rule {
+    border-top: 2px solid #8b774c;
+    margin-top: 20px;
+    padding-top: 14px;
+    text-align: center;
+    font-family: 'Courier Prime', monospace;
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #7a6a4a;
+  }
+
+  .bottom-rule .ornament {
+    font-size: 18px;
+    color: #8b774c;
+    letter-spacing: 12px;
+  }
+
+  /* Decorative initial cap */
+  .dropcap::first-letter {
+    font-size: 48px;
+    font-weight: 900;
+    float: left;
+    line-height: 0.8;
+    margin-right: 8px;
+    margin-top: 4px;
+    color: #1a1008;
+    font-family: 'UnifrakturMaguntia', serif;
+  }
+
+  /* Responsive */
+  @media (max-width: 900px) {
+    .two-col { grid-template-columns: 1fr; gap: 20px; }
+    .three-col { grid-template-columns: 1fr 1fr; }
+    .masthead h1 { font-size: 48px; }
+    .headline-story h2 { font-size: 30px; }
+  }
+
+  @media (max-width: 600px) {
+    .three-col { grid-template-columns: 1fr; }
+    .masthead h1 { font-size: 36px; }
+    .headline-story h2 { font-size: 24px; }
+    body { padding: 20px 10px; }
+    .content { padding: 15px; }
+    .market-ticker { grid-template-columns: repeat(3, 1fr); }
+  }
+
+  /* Print styles */
+  @media print {
+    body { background: none; padding: 0; }
+    .newspaper { box-shadow: none; border: 1px solid #000; }
+  }
+</style>
+</head>
+<body>
+
+<div class="newspaper">
+  <div class="top-ornament">
+    <div class="line"></div>
+    <span>✦ Established 2024 ✦</span>
+    <div class="line"></div>
+  </div>
+
+  <div class="masthead">
+    <div class="subtitle">The Voice of the Digital Age</div>
+    <h1>The Daily Cryptograph</h1>
+    <div class="date-line">
+      <span>Vol. III, No. CLXVII</span>
+      <span>Friday, June 5, 2026</span>
+      <span>Price: One Satoshi</span>
+    </div>
+    <div class="edition">★ Morning Edition ★</div>
+  </div>
+
+  <div class="content">
+    <!-- HEADLINE -->
+    <div class="headline-story">
+      <div class="label">★ Breaking News ★</div>
+      <h2>Bitcoin Holds Line at $62K<br>After Wild Week of Turmoil</h2>
+      <p class="subhead">Crypto markets endure a dramatic sell-off as Strategy's debt buyback rattles confidence — but bulls defend the 200-week trend line</p>
+      <p class="byline">By <span>The Cryptograph Staff</span>  |  June 5, 2026</p>
+    </div>
+
+    <!-- MARKET TICKER -->
+    <div class="market-ticker">
+      <div class="ticker-item">
+        <div class="coin">BTC</div>
+        <div class="price">$62,572</div>
+        <div class="change up">▲ 0.12%</div>
+      </div>
+      <div class="ticker-item">
+        <div class="coin">ETH</div>
+        <div class="price">$1,675</div>
+        <div class="change up">▲ 4.60%</div>
+      </div>
+      <div class="ticker-item">
+        <div class="coin">SOL</div>
+        <div class="price">$66.38</div>
+        <div class="change down">▼ 3.00%</div>
+      </div>
+      <div class="ticker-item">
+        <div class="coin">XRP</div>
+        <div class="price">$1.13</div>
+        <div class="change up">▲ 1.66%</div>
+      </div>
+      <div class="ticker-item">
+        <div class="coin">ADA</div>
+        <div class="price">$0.164</div>
+        <div class="change down">▼ 15.12%</div>
+      </div>
+      <div class="ticker-item">
+        <div class="coin">DOGE</div>
+        <div class="price">$0.085</div>
+        <div class="change down">▼ 3.26%</div>
+      </div>
+      <div class="ticker-item">
+        <div class="coin">ZEC</div>
+        <div class="price">$338</div>
+        <div class="change down">▼ 59.56%</div>
+      </div>
+      <div class="ticker-item">
+        <div class="coin">BNB</div>
+        <div class="price">$592</div>
+        <div class="change up">▲ 0.11%</div>
+      </div>
+      <div class="ticker-item">
+        <div class="coin">XMR</div>
+        <div class="price">$333</div>
+        <div class="change down">▼ 4.54%</div>
+      </div>
+      <div class="ticker-item">
+        <div class="coin">HYPE</div>
+        <div class="price">$61</div>
+        <div class="change down">▼ 7.85%</div>
+      </div>
+    </div>
+
+    <!-- TWO COLUMN MAIN -->
+    <div class="two-col">
+      <div class="col">
+        <!-- ZEC Story -->
+        <div class="article">
+          <div class="meta"><span class="tag">Security</span> 6 hours ago</div>
+          <h3>ZEC Plunges 30% as Shielded Labs Reveals Infinite Counterfeit Bug</h3>
+          <p class="dropcap">Zcash fell by nearly $3 billion in market capitalization over the past 24 hours following the disclosure of a critical vulnerability in its privacy protocol. Shielded Labs revealed details of an "infinite counterfeit bug" that could have allowed attackers to mint ZEC tokens without limit. While the vulnerability has been patched, the revelation sent shockwaves through the privacy-coin community and triggered a cascade of liquidations.</p>
+          <p>ZEC was trading at $338 at press time, down nearly 60% from yesterday's levels. The incident raises fresh questions about the security guarantees of zero-knowledge proof systems.</p>
+          <div class="read-more"><a href="https://cointelegraph.com/news/zec-tanks-30-after-ai-security-review-discovers-critical-zcash-vulnerability" target="_blank">Continue Reading →</a></div>
+        </div>
+
+        <!-- Strategy Story -->
+        <div class="article">
+          <div class="meta"><span class="tag">Markets</span> 14 hours ago</div>
+          <h3>Strategy's Leveraged Bitcoin Model Faces First Major Stress Test</h3>
+          <p>Grayscale published a report analyzing the risks of Strategy's (formerly MicroStrategy) leveraged Bitcoin strategy, calling it "the first real stress test" of the model. Following Strategy's debt buyback announcement, Bitcoin fell 21% — prompting comparisons to the Terra Luna collapse. Analysts remain divided on whether the company's massive BTC holdings could trigger a systemic unwind in a prolonged downturn. The company currently holds over 200,000 BTC, largely financed through convertible debt issuances, and the market is watching closely for any signs of forced liquidation.</p>
+          <div class="read-more"><a href="https://cointelegraph.com/news/strategys-leveraged-bitcoin-model-faces-first-stress-test-grayscale" target="_blank">Continue Reading →</a></div>
+        </div>
+
+        <!-- BTC Longs Liquidated -->
+        <div class="article">
+          <div class="meta"><span class="tag">Liquidations</span> Yesterday</div>
+          <h3>Over $600M in Bitcoin Longs Liquidated as BTC Dips Toward $60K</h3>
+          <p>The sharp sell-off triggered over $600 million in long Bitcoin futures liquidations as the king crypto briefly touched the $60,000 level before recovering. Data from Coinglass showed the largest single-day long squeeze in months, with leverage being washed out of the system. Open interest dropped sharply, suggesting the market is resetting to healthier levels after weeks of elevated speculative positioning.</p>
+          <div class="read-more"><a href="https://cointelegraph.com/markets/over-600m-in-bitcoin-longs-liquidated-as-btc-dips-toward-60k" target="_blank">Continue Reading →</a></div>
+        </div>
+      </div>
+
+      <div class="col col-divider" style="padding-left: 10px;">
+        <!-- Feature Box -->
+        <div class="feature-box">
+          <h3>BTC Tags 200-Week Trend Line</h3>
+          <p>Bitcoin's price briefly touched the 200-week moving average — the same trend line that defined the 2022 bear market bottom. Bulls stepped in decisively at this level, sparking a sharp reversal. Historical precedent suggests this moving average has served as a reliable accumulation zone in past cycles. <a href="https://cointelegraph.com/markets/bitcoin-price-just-tagged-200-week-trend-line-that-defined-2022-bear-market" target="_blank" style="color:#8b2010; font-family:'Courier Prime',monospace; font-size:11px; letter-spacing:2px; text-transform:uppercase; text-decoration:none;">Read Full Analysis →</a></p>
+        </div>
+
+        <!-- South Korea / Polymarket -->
+        <div class="article">
+          <div class="meta"><span class="tag">Regulation</span> 39 minutes ago</div>
+          <h3>South Korea Police Probe Polymarket Users Over Illegal Gambling Claims</h3>
+          <p>South Korean authorities have launched an investigation into users of the Polymarket prediction market platform, alleging that the platform may constitute illegal gambling under Korean law. This comes as regulatory scrutiny of decentralized prediction markets intensifies worldwide. The probe is reportedly focused on users who placed political and sports bets through the platform, which regulators argue falls outside the bounds of legal speculation in the country.</p>
+          <div class="read-more"><a href="https://cointelegraph.com/news/south-korean-authorities-first-illegal-gambling-probe-polymarket-users" target="_blank">Continue Reading →</a></div>
+        </div>
+
+        <!-- Coinbase -->
+        <div class="article">
+          <div class="meta"><span class="tag">Adoption</span> 16 hours ago</div>
+          <h3>Coinbase to Launch Token-Backed Mortgage Down Payments This Summer</h3>
+          <p>Coinbase announced a groundbreaking program that will allow homebuyers to use their crypto holdings as collateral for mortgage down payments. The exchange plans to launch the service later this summer, partnering with mortgage lenders to accept Bitcoin, Ether, and select other tokens as collateral. The move could unlock billions of dollars in crypto wealth for the real estate market and represents one of the most significant bridges between digital assets and traditional finance to date.</p>
+          <div class="read-more"><a href="https://cointelegraph.com/news/coinbase-token-backed-mortgages-fannie-mae-summer" target="_blank">Continue Reading →</a></div>
+        </div>
+
+        <!-- Institutional ETF Dump -->
+        <div class="article">
+          <div class="meta"><span class="tag">ETF</span> 15 hours ago</div>
+          <h3>Professional Investors Dumped 52K BTC Worth of ETFs in Q1</h3>
+          <p>New 13F filings reveal that professional investors and institutions sold off approximately 52,000 Bitcoin's worth of spot BTC ETFs during the first quarter of 2026. The sell-off was concentrated among hedge funds and proprietary trading desks that had engaged in basis trade arbitrage. However, long-term holders and registered investment advisors (RIAs) largely maintained their positions, suggesting a rotation rather than outright abandonment of the asset class.</p>
+          <div class="read-more"><a href="https://cointelegraph.com/news/bitcoin-etf-ownership-shifts-hedge-funds-sell-banks-buy-coinshares" target="_blank">Continue Reading →</a></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- THREE COLUMN BOTTOM -->
+    <div class="three-col">
+      <!-- Column 1 -->
+      <div class="col">
+        <div class="article">
+          <div class="meta"><span class="tag">Politics</span> 4 hours ago</div>
+          <h3>Crypto Billionaires Bankroll Nigel Farage's Pro-Crypto Party</h3>
+          <p>A group of prominent crypto billionaires has been revealed as major donors to Nigel Farage's pro-crypto political party in the UK. The funding, disclosed in recent filings, highlights the growing intersection of digital asset wealth and political influence on the global stage. Farage has campaigned on a platform of making Britain a "crypto-friendly jurisdiction."</p>
+          <div class="read-more"><a href="https://cointelegraph.com/news/crypto-billionaires-bankroll-reform-uk-more-than-other-parties" target="_blank">Read Full Story →</a></div>
+        </div>
+
+        <div class="article">
+          <div class="meta"><span class="tag">Solana</span> 27 minutes ago</div>
+          <h3>Forward Industries Moves $32M in SOL Amid $1B Paper Loss</h3>
+          <p>Forward Industries transferred $32 million worth of Solana tokens, raising speculation about their intent as the firm sits on over $1 billion in unrealized paper losses from their SOL holdings. Market participants are watching for potential further distributions.</p>
+          <div class="read-more"><a href="https://cointelegraph.com/news/forward-industries-moves-319m-in-sol-to-coinbase-prime-amid-113b-paper-loss" target="_blank">Read Full Story →</a></div>
+        </div>
+      </div>
+
+      <!-- Column 2 -->
+      <div class="col">
+        <div class="article">
+          <div class="meta"><span class="tag">SEC</span> 13 hours ago</div>
+          <h3>SEC's Peirce: Publishing DeFi Code Is Protected Speech</h3>
+          <p>SEC Commissioner Hester Peirce, widely known as "Crypto Mom," argued that publishing decentralized finance (DeFi) code constitutes protected speech under the First Amendment. The statement provides a potential legal shield for developers who write and publish smart contract code without active solicitation of users.</p>
+          <div class="read-more"><a href="https://cointelegraph.com/news/sec-peirce-open-source-blockchain-developers-securities-rules" target="_blank">Read Full Story →</a></div>
+        </div>
+
+        <div class="article">
+          <div class="meta"><span class="tag">Sanctions</span> 15 hours ago</div>
+          <h3>Russia Targets British Teen for Crypto Sanctions Claims</h3>
+          <p>Russia has targeted a 17-year-old British national for publicly alleging that digital assets are being used to circumvent international sanctions. The incident marks an escalation in the geopolitical battle over cryptocurrency's role in evading financial restrictions.</p>
+          <div class="read-more"><a href="https://cointelegraph.com/news/russia-sanctions-british-teenager-ruble-stablecoin-ukraine-war" target="_blank">Read Full Story →</a></div>
+        </div>
+      </div>
+
+      <!-- Column 3 -->
+      <div class="col">
+        <div class="article">
+          <div class="meta"><span class="tag">Regulation</span> 6 hours ago</div>
+          <h3>Senate Republicans Push Watchdogs to Clarify Crypto Capital Rules</h3>
+          <p>Senate Republicans are pressing financial regulators to clarify how digital assets should be classified for capital treatment purposes. The push aims to remove ambiguity that has prevented traditional banks from offering crypto custody and trading services at scale.</p>
+          <div class="read-more"><a href="https://cointelegraph.com/news/senate-republicans-push-finance-regulators-to-clarify-crypto-capital-rules" target="_blank">Read Full Story →</a></div>
+        </div>
+
+        <div class="article">
+          <div class="meta"><span class="tag">Comptroller</span> 13 hours ago</div>
+          <h3>Comptroller Says Only Democrats Pressuring Over Crypto Trust Charter</h3>
+          <p>The U.S. Comptroller of the Currency stated that pressure regarding crypto trust charters is coming exclusively from Democratic lawmakers, revealing a deepening partisan divide over digital asset regulation at the federal level.</p>
+          <div class="read-more"><a href="https://cointelegraph.com/news/occ-gould-political-pressure-democrats-world-liberty-financial" target="_blank">Read Full Story →</a></div>
+        </div>
+
+        <div class="article">
+          <div class="meta"><span class="tag">Analysis</span></div>
+          <h3>Is Terra Luna-Style Doom Loop Next for Strategy?</h3>
+          <p>Bitcoin fell 21% after Strategy's debt buyback news, and analysts are drawing uncomfortable parallels to the Terra Luna collapse of 2022. While the mechanisms differ — convertible bonds versus algorithmic stablecoins — the core question of leverage-driven cascading liquidation remains the same. Grayscale's report argues the comparison is overblown but acknowledges that "the stress test is real."</p>
+          <div class="read-more"><a href="https://cointelegraph.com/news/strategys-unrealized-loss-soars-11b-standard-chartered-bottom-near" target="_blank">Read Full Story →</a></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="bottom-rule">
+      <div class="ornament">✦ ✦ ✦ ✦ ✦</div>
+      <p>The Daily Cryptograph  |  Founded in the Year of the Blockchain  |  est. 2024</p>
+      <p style="margin-top:4px; font-style:italic; letter-spacing:1px; text-transform:none;">
+        "All the News That's Fit to Mint"
+      </p>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
