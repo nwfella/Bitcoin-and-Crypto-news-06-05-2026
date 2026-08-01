@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Daily Cryptograph — Friday, July 31, 2026</title>
+<title>The Daily Cryptograph — Special Edition — Friday, July 31, 2026</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=UnifrakturMaguntia&display=swap');
 
@@ -125,6 +125,14 @@
     font-style: italic;
   }
 
+  .masthead .edition.extra {
+    color: #8b2010;
+    font-weight: 700;
+    font-style: normal;
+    letter-spacing: 4px;
+    background: linear-gradient(135deg, rgba(139,32,16,0.06), rgba(139,32,16,0.12));
+  }
+
   .content {
     padding: 20px 30px 30px;
     position: relative;
@@ -145,6 +153,7 @@
     text-transform: uppercase;
     color: #8b2010;
     margin-bottom: 10px;
+    font-weight: 700;
   }
 
   .headline-story h2 {
@@ -179,6 +188,53 @@
     letter-spacing: 0;
     font-family: 'Playfair Display', serif;
   }
+
+  .alert-box {
+    background: #f5efe0;
+    border: 3px double #8b2010;
+    padding: 16px 20px;
+    margin: 0 0 24px;
+    position: relative;
+  }
+
+  .alert-box .alert-head {
+    font-family: 'Courier Prime', monospace;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #8b2010;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+
+  .alert-box ul { list-style: none; margin: 0; padding: 0; }
+  .alert-box li {
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: #2a2010;
+    padding: 5px 0 5px 22px;
+    position: relative;
+    border-bottom: 1px dotted #c4b694;
+  }
+  .alert-box li:last-child { border-bottom: none; }
+  .alert-box li::before {
+    content: '☞';
+    position: absolute;
+    left: 2px;
+    color: #8b2010;
+    font-weight: 700;
+  }
+  .alert-box .alert-cta {
+    text-align: center;
+    margin-top: 10px;
+    font-family: 'Courier Prime', monospace;
+    font-size: 12px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  .alert-box .alert-cta a { color: #8b2010; font-weight: 700; text-decoration: none; }
+  .alert-box .alert-cta a:hover { text-decoration: underline; }
 
   .market-ticker {
     display: grid;
@@ -402,87 +458,98 @@
     <div class="subtitle">The Voice of the Digital Age</div>
     <h1>The Daily Cryptograph</h1>
     <div class="date-line">
-      <span>Vol. III, No. CCXI</span>
+      <span>Vol. III, No. CCXII</span>
       <span>Friday, July 31, 2026</span>
       <span>Price: One Satoshi</span>
     </div>
-    <div class="edition">★ Morning Edition ★</div>
+    <div class="edition extra">★ Extra! Extra! Special Edition — The Cold Wallet Crisis ★</div>
   </div>
 
   <div class="content">
 
     <div class="headline-story">
-      <div class="label">★ Breaking: New York vs. The Prediction Markets ★</div>
-      <h2>New York Sues Kalshi Over Alleged<br>Illegal Gambling Operation</h2>
-      <p class="subhead">AG Letitia James calls prediction markets "gambling platforms, plain and simple" — while the CFTC rushes to defend its exclusive authority over federally regulated exchanges in an escalating jurisdictional clash</p>
-      <p class="byline">By <span>Yohan Yun &amp; Cointelegraph Staff</span>  |  July 31, 2026</p>
+      <div class="label">★ Extra — Special Edition: Cold Wallet Crisis ★</div>
+      <h2>594 BTC Swept in 25 Minutes as Coldcard<br>Seed-Entropy Flaw Is Exposed</h2>
+      <p class="subhead">No phishing, no leaked seeds, no stolen devices — the attacker simply recomputed the victims' wallets. Coinkite now warns that Coldcard seeds generated from March 2021 onward were born weak, and fixed firmware cannot repair what was already generated</p>
+      <p class="byline">By <span>Ezra Reguerra &amp; The Daily Cryptograph Staff</span>  |  July 31, 2026</p>
+    </div>
+
+    <div class="alert-box">
+      <div class="alert-head">☠ If You Use a Coldcard — Do This Now</div>
+      <ul>
+        <li><strong>Assume exposure</strong> if your seed was generated on any Coldcard (Mk2/Mk3/Mk4/Mk5/Q) after March 2021 — unless you entered at least <strong>50 independent, private dice rolls</strong> or protected the wallet with a <strong>strong, unique BIP-39 passphrase</strong>.</li>
+        <li><strong>Updating firmware does NOT repair existing seeds.</strong> It only fixes new ones. You must migrate funds to a brand-new seed.</li>
+        <li><strong>Migrate calmly:</strong> install fixed firmware (Mk3 → 4.2.0 · Mk4/Mk5 → 5.6.0 or 6.6.0X Edge · Q → 1.5.0Q or 6.6.0QX Edge), generate a new seed, verify the backup and a receive address on the device screen, send a small test transaction, then move the rest.</li>
+        <li><strong>A bad seed stays bad</strong> even if restored into a Trezor or Ledger — the weakness lives in the numbers, not the hardware.</li>
+      </ul>
+      <div class="alert-cta">Full technical breakdown &amp; step-by-step remediation: <a href="https://nwfella.github.io/coldcard-entropy-incident/" target="_blank">ColdCard Entropy Incident — the $38M RNG Failure →</a></div>
     </div>
 
     <div class="market-ticker">
       <div class="ticker-item">
         <div class="coin">BTC</div>
-        <div class="price">$62,983</div>
-        <div class="change up">▲ 2.93%</div>
+        <div class="price">$62,940</div>
+        <div class="change up">▲ 2.85%</div>
       </div>
       <div class="ticker-item">
         <div class="coin">ETH</div>
-        <div class="price">$1,863.16</div>
-        <div class="change up">▲ 3.27%</div>
+        <div class="price">$1,864.38</div>
+        <div class="change up">▲ 2.83%</div>
       </div>
       <div class="ticker-item">
         <div class="coin">SOL</div>
-        <div class="price">$72.92</div>
-        <div class="change up">▲ 2.34%</div>
+        <div class="price">$72.90</div>
+        <div class="change up">▲ 2.22%</div>
       </div>
       <div class="ticker-item">
         <div class="coin">XRP</div>
         <div class="price">$1.06</div>
-        <div class="change up">▲ 2.15%</div>
+        <div class="change up">▲ 1.81%</div>
       </div>
       <div class="ticker-item">
         <div class="coin">ADA</div>
-        <div class="price">$0.1680</div>
-        <div class="change up">▲ 1.28%</div>
+        <div class="price">$0.1685</div>
+        <div class="change up">▲ 0.71%</div>
       </div>
       <div class="ticker-item">
         <div class="coin">DOGE</div>
-        <div class="price">$0.06967</div>
-        <div class="change up">▲ 1.52%</div>
+        <div class="price">$0.06968</div>
+        <div class="change up">▲ 1.21%</div>
       </div>
       <div class="ticker-item">
         <div class="coin">ZEC</div>
-        <div class="price">$457.51</div>
-        <div class="change up">▲ 3.11%</div>
+        <div class="price">$459.55</div>
+        <div class="change up">▲ 2.35%</div>
       </div>
       <div class="ticker-item">
         <div class="coin">BNB</div>
-        <div class="price">$587.34</div>
-        <div class="change up">▲ 0.89%</div>
+        <div class="price">$587.65</div>
+        <div class="change up">▲ 0.81%</div>
       </div>
       <div class="ticker-item">
         <div class="coin">XMR</div>
-        <div class="price">$358.34</div>
-        <div class="change up">▲ 1.79%</div>
+        <div class="price">$359.18</div>
+        <div class="change up">▲ 0.16%</div>
       </div>
       <div class="ticker-item">
         <div class="coin">HYPE</div>
-        <div class="price">$52.65</div>
-        <div class="change up">▲ 5.72%</div>
+        <div class="price">$52.56</div>
+        <div class="change up">▲ 5.74%</div>
       </div>
       <div class="ticker-item">
         <div class="coin">TRX</div>
-        <div class="price">$0.3263</div>
+        <div class="price">$0.3261</div>
         <div class="change up">▲ 0.80%</div>
       </div>
       <div class="ticker-item">
         <div class="coin">LINK</div>
-        <div class="price">$8.16</div>
-        <div class="change up">▲ 3.72%</div>
+        <div class="price">$8.18</div>
+        <div class="change up">▲ 3.07%</div>
       </div>
       <div class="ticker-item">
         <div class="coin">XLM</div>
-        <div class="price">$0.1722</div>
-        <div class="change up">▲ 0.03%</div>
+        <div class="price">$0.1721</div>
+        <div class="change up">▲ 0.18%</div>
       </div>
     </div>
 
@@ -490,17 +557,20 @@
       <div class="col">
 
         <div class="article">
-          <div class="meta"><span class="tag">Exchanges</span> FTX Recovery</div>
-          <h3><a href="https://cointelegraph.com/news/ftx-users-funds-released-fifth-distribution-round" target="_blank">Ex-FTX Users Report Funds Released in $900M Distribution Round</a></h3>
-          <p class="dropcap">Former FTX users reported receiving reimbursements on Friday as the FTX Recovery Trust began a new $900 million distribution to creditors. Users, including former FTX customer Sunil Kavuri, said funds had started arriving through distribution partners such as Kraken after notifications were sent last week. The latest payout is the fifth distribution since FTX entered bankruptcy in 2022 and is part of a broader recovery process involving platforms including BitGo and Payoneer. With this round, the trust is estimated to have returned roughly $11 billion to customers who lost access to their assets following the exchange's collapse. Ex-CEO Sam Bankman-Fried and former FTX Digital Markets co-CEO Ryan Salame remain imprisoned, while former Alameda Research CEO Caroline Ellison completed her sentence earlier this year. Separately, a US bankruptcy judge recently allowed the FTX estate to continue pursuing a $1.76 billion clawback claim against Binance and former CEO Changpeng Zhao.</p>
-          <div class="read-more"><a href="https://cointelegraph.com/news/ftx-users-funds-released-fifth-distribution-round" target="_blank">Continue Reading →</a></div>
+          <div class="meta"><span class="tag">Security</span> Bitcoin Hardware — Front Page</div>
+          <h3><a href="https://cointelegraph.com/news/coldcard-mk3-warning-594-btc-sweep" target="_blank">Coldcard Issues Mk3 Warning as Experts Examine $38M Bitcoin Wallet Drain</a></h3>
+          <p class="dropcap">In the small hours of Thursday, July 30, an automated operation swept 1,324 unspent transaction outputs from 500 single-signature Bitcoin addresses within a three-block window, moving <strong>594.48 BTC — roughly $38.3 million</strong> — in about 25 minutes. AnchorWatch CEO Rob Hamilton, who documented the sweep, noted that 562 BTC was later consolidated into a single address and that every affected address was single-signature: "At a glance, this looks like there was flawed entropy in wallet generation somewhere along the way."</p>
+          <p>By end of day, Canadian hardware maker Coinkite had confirmed the fear. Its <strong>Mk3 Security Advisory</strong> warned that seeds generated on a Coldcard Mk3 running firmware <strong>4.0.1 (March 2021) or later</strong> may put funds at risk. The company's July 31 update extended the scope to every current model: seeds generated on <strong>Mk4 and Mk5 before version 5.6.0 (standard) or 6.6.0X (Edge), and Q before 1.5.0Q (standard) or 6.6.0QX (Edge)</strong>, carry roughly 72 bits of effective entropy instead of the expected 128 bits.</p>
+          <p>The root cause, per Coinkite's technical backgrounder, is a subtle firmware regression from the March 2021 migration to Bitcoin Core's libsecp256k1: wallet seed generation silently resolved to MicroPython's non-cryptographic software PRNG rather than the STM32 hardware TRNG. On Mk3 devices the effective search space collapsed to roughly <strong>2⁴⁰ — about 1.1 trillion combinations</strong>, small enough for a well-resourced attacker to compute every possibility offline. The company assumes AI-assisted review of its open-source firmware history found the flaw.</p>
+          <p>Wizardsardine CEO Kevin Loaec's hypothesis matches the on-chain fingerprint: a low-entropy random-number generator, exploited by an automated script searching a limited range of <strong>BIP-84 derivation paths</strong> — which would explain the concentration in native SegWit addresses and the partial drains. He warned that partially drained wallets may remain at risk. Coinkite stressed that seeds used with a <strong>strong, unique BIP-39 passphrase</strong> face minimal risk — the passphrase, not the PIN — and that users who added <strong>50 or more independent, private dice rolls</strong> are similarly protected. "Out of an abundance of caution," affected users are urged to generate a new seed on an unaffected device, verify backup and receive address, send a small test transaction, and only then move remaining funds.</p>
+          <div class="read-more"><a href="https://cointelegraph.com/news/coldcard-mk3-warning-594-btc-sweep" target="_blank">Continue Reading on Cointelegraph →</a> &nbsp;·&nbsp; <a href="https://nwfella.github.io/coldcard-entropy-incident/" target="_blank">Full Write-Up &amp; Remediation Guide →</a></div>
         </div>
 
         <div class="article">
-          <div class="meta"><span class="tag">Security</span> Bitcoin Hardware</div>
-          <h3><a href="https://cointelegraph.com/news/coldcard-mk3-warning-594-btc-sweep" target="_blank">Coldcard Issues Mk3 Warning as Experts Examine $38M Bitcoin Wallet Drain</a></h3>
-          <p>Canadian Bitcoin hardware maker Coinkite has warned users of its Coldcard Mk3 signing device to move funds from wallets whose seed phrases were generated on affected firmware. Coinkite said seeds created on an Mk3 running firmware version 4.0.1, released in March 2021, or any later Mk3 version may put funds at risk. The issue extends through version 5.0.3, the final firmware supporting the Mk3, while the Mk4, Q and Mk5 are not affected, according to the company's early analysis. The warning comes as Bitcoin security specialists examine an unexplained, coordinated sweep involving 594.48 BTC from single-signature addresses — though no definitive public evidence has established that the Mk3 issue caused those transfers. "Out of an abundance of caution," Coinkite urged affected users to generate a new seed on an unaffected device, verify its backup and receive address, send a small test transaction and only then move the remaining funds.</p>
-          <div class="read-more"><a href="https://cointelegraph.com/news/coldcard-mk3-warning-594-btc-sweep" target="_blank">Continue Reading →</a></div>
+          <div class="meta"><span class="tag">Exchanges</span> FTX Recovery</div>
+          <h3><a href="https://cointelegraph.com/news/ftx-users-funds-released-fifth-distribution-round" target="_blank">Ex-FTX Users Report Funds Released in $900M Distribution Round</a></h3>
+          <p>Former FTX users reported receiving reimbursements on Friday as the FTX Recovery Trust began a new $900 million distribution to creditors. Users, including former FTX customer Sunil Kavuri, said funds had started arriving through distribution partners such as Kraken after notifications were sent last week. The latest payout is the fifth distribution since FTX entered bankruptcy in 2022 and is part of a broader recovery process involving platforms including BitGo and Payoneer. With this round, the trust is estimated to have returned roughly $11 billion to customers who lost access to their assets following the exchange's collapse. Ex-CEO Sam Bankman-Fried and former FTX Digital Markets co-CEO Ryan Salame remain imprisoned, while former Alameda Research CEO Caroline Ellison completed her sentence earlier this year. Separately, a US bankruptcy judge recently allowed the FTX estate to continue pursuing a $1.76 billion clawback claim against Binance and former CEO Changpeng Zhao.</p>
+          <div class="read-more"><a href="https://cointelegraph.com/news/ftx-users-funds-released-fifth-distribution-round" target="_blank">Continue Reading →</a></div>
         </div>
 
         <div class="article">
@@ -530,7 +600,7 @@
         <div class="article">
           <div class="meta"><span class="tag">ETF</span> Flows</div>
           <h3><a href="https://cointelegraph.com/markets/bitcoin-etfs-inflows-week-back-green" target="_blank">Bitcoin ETFs Post $233M Inflows, Pushing Week Back Into the Green</a></h3>
-          <p>BlackRock's IBIT led $233.1 million in daily inflows as US spot Bitcoin ETFs turned positive for the week, according to Cointelegraph Markets Pro data. The rebound puts July on track to end in the green for spot Bitcoin funds, shaking off a choppy stretch that saw outflows during the AI-driven equity rout. The inflows come as Bitcoin holds above $62,000 despite persistent macro headwinds, with traders eyeing the Fed's next move after June PCE inflation printed its first monthly decline in six years.</p>
+          <p>BlackRock's IBIT led $233.1 million in daily inflows as US spot Bitcoin ETFs turned positive for the week, according to Cointelegraph Markets Pro data. The rebound puts July on track to end in the green for spot Bitcoin funds, shaking off a choppy stretch that saw outflows during the AI-driven equity rout. The inflows come as Bitcoin holds above $62,000 despite persistent macro headwinds, with traders eyeing the Fed's next move after June PCE inflation printed its first monthly decline in six years — a dynamic examined this week as TIPS data pointed to rising real yields, which weigh on non-yielding assets like Bitcoin.</p>
           <div class="read-more"><a href="https://cointelegraph.com/markets/bitcoin-etfs-inflows-week-back-green" target="_blank">Continue Reading →</a></div>
         </div>
 
@@ -575,23 +645,23 @@
       </div>
 
       <div class="article">
-        <div class="meta"><span class="tag">Stablecoins</span> Regulation</div>
-        <h3><a href="https://cointelegraph.com/news/circle-receives-new-york-trust-charter-for-subsidiary" target="_blank">Circle Receives New York Trust Charter for Subsidiary</a></h3>
-        <p>Circle has received a New York trust charter for a subsidiary, strengthening the stablecoin issuer's regulated footprint in the US as it competes with Tether amid a roughly $307 billion global stablecoin market.</p>
-        <div class="read-more"><a href="https://cointelegraph.com/news/circle-receives-new-york-trust-charter-for-subsidiary" target="_blank">Read More →</a></div>
+        <div class="meta"><span class="tag">Regulation</span> Prediction Markets</div>
+        <h3><a href="https://cointelegraph.com/news/new-york-sues-kalshi-gambling-operation" target="_blank">New York Sues Kalshi Over Alleged Illegal Gambling Operation</a></h3>
+        <p>The lawsuit adds to a growing clash between New York and the CFTC over whether federally regulated prediction markets are subject to state gambling laws, as Attorney General Letitia James calls the platforms "gambling operations, plain and simple."</p>
+        <div class="read-more"><a href="https://cointelegraph.com/news/new-york-sues-kalshi-gambling-operation" target="_blank">Read More →</a></div>
       </div>
 
       <div class="article">
-        <div class="meta"><span class="tag">CBDC</span> Digital Euro</div>
-        <h3><a href="https://cointelegraph.com/news/ecb-digital-euros-accessibility-payment-providers" target="_blank">ECB Says Digital Euro App Will Exceed EU Accessibility Standards</a></h3>
-        <p>The European Central Bank says its digital euro app will exceed EU accessibility standards, as the bloc pushes ahead with the central bank digital currency alongside its MiCA framework for private stablecoins.</p>
-        <div class="read-more"><a href="https://cointelegraph.com/news/ecb-digital-euros-accessibility-payment-providers" target="_blank">Read More →</a></div>
+        <div class="meta"><span class="tag">Markets</span> Price Action</div>
+        <h3><a href="https://cointelegraph.com/markets/bitcoin-two-week-lows-us-stocks-fail-copy-asia-rebound" target="_blank">Bitcoin Price Sinks to 2-Week Lows as US Stocks Fail to Copy Asia Rebound</a></h3>
+        <p>Bitcoin sank to two-week lows as US stocks failed to follow Asia's rebound, before clawing back above $62,900 on Friday. Traders are weighing the first monthly PCE decline in six years against a resilient dollar and rising real yields.</p>
+        <div class="read-more"><a href="https://cointelegraph.com/markets/bitcoin-two-week-lows-us-stocks-fail-copy-asia-rebound" target="_blank">Read More →</a></div>
       </div>
     </div>
 
     <div class="bottom-rule">
       <div class="ornament">✦ ✦ ✦</div>
-      <p>The Daily Cryptograph  |  Friday, July 31, 2026  |  Vol. III, No. CCXI</p>
+      <p>The Daily Cryptograph  |  Special Edition  |  Friday, July 31, 2026</p>
       <p>All news sourced from Cointelegraph  |  Data as of market open</p>
       <p>Not financial advice  |  DYOR  |  NFA</p>
     </div>
