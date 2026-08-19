@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Daily Cryptograph — Saturday, August 15, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=UnifrakturMaguntia&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #d4c9a8;
+    background-image:
+      radial-gradient(ellipse at 20% 50%, rgba(139,119,76,0.08) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 50%, rgba(139,119,76,0.08) 0%, transparent 50%);
+    min-height: 100vh;
+    padding: 40px 20px;
+    font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  }
+
+  .newspaper {
+    max-width: 1200px;
+    margin: 0 auto;
+    background: #f5efe0;
+    background-image:
+      linear-gradient(135deg, #f8f3e6 0%, #f0e9d5 50%, #f5efe0 100%);
+    border: 2px solid #8b774c;
+    box-shadow:
+      0 0 0 1px #a09070,
+      0 0 0 3px #c4b694,
+      0 8px 32px rgba(0,0,0,0.25),
+      inset 0 0 60px rgba(139,119,76,0.06);
+    padding: 0;
+    position: relative;
+  }
+
+  .newspaper::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(139,119,76,0.02) 2px,
+        rgba(139,119,76,0.02) 4px
+      );
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .top-ornament {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 30px 0;
+    color: #6b5b3a;
+    font-size: 14px;
+    letter-spacing: 4px;
+    font-family: 'Courier Prime', monospace;
+    text-transform: uppercase;
+  }
+
+  .top-ornament .line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, transparent, #8b774c, transparent);
+  }
+
+  .top-ornament span {
+    padding: 0 18px;
+  }
+
+  .masthead {
+    text-align: center;
+    padding: 15px 30px 5px;
+    border-bottom: 3px double #6b5b3a;
+    position: relative;
+  }
+
+  .masthead .subtitle {
+    font-family: 'Courier Prime', monospace;
+    font-size: 11px;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    color: #6b5b3a;
+    margin-bottom: 8px;
+  }
+
+  .masthead h1 {
+    font-family: 'UnifrakturMaguntia', 'Playfair Display', serif;
+    font-size: 72px;
+    font-weight: 400;
+    color: #2a2010;
+    letter-spacing: 4px;
+    line-height: 1;
+    text-shadow: 2px 2px 0 rgba(0,0,0,0.05);
+    margin-bottom: 6px;
+  }
+
+  .masthead .date-line {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #5a4a2a;
+    border-top: 1px solid #c4b694;
+    border-bottom: 1px solid #c4b694;
+    padding: 6px 0;
+    font-family: 'Courier Prime', monospace;
+    margin-top: 8px;
+  }
+
+  .masthead .edition {
+    border-top: 1px solid #c4b694;
+    padding: 4px 0;
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: #7a6a4a;
+    text-transform: uppercase;
+    font-family: 'Courier Prime', monospace;
+    font-style: italic;
+  }
+
+  .masthead .edition.extra {
+    color: #8b2010;
+    font-weight: 700;
+    font-style: normal;
+    letter-spacing: 4px;
+    background: linear-gradient(135deg, rgba(139,32,16,0.06), rgba(139,32,16,0.12));
+  }
+
+  .content {
+    padding: 20px 30px 30px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .headline-story {
+    text-align: center;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #8b774c;
+    margin-bottom: 20px;
+  }
+
+  .headline-story .label {
+    font-family: 'Courier Prime', monospace;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #8b2010;
+    margin-bottom: 10px;
+    font-weight: 700;
+  }
+
+  .headline-story h2 {
+    font-size: 42px;
+    font-weight: 900;
+    color: #1a1008;
+    line-height: 1.1;
+    margin-bottom: 10px;
+    letter-spacing: -0.5px;
+  }
+
+  .headline-story .subhead {
+    font-size: 18px;
+    font-style: italic;
+    color: #5a4a2a;
+    margin-bottom: 12px;
+    line-height: 1.4;
+  }
+
+  .headline-story .byline {
+    font-size: 13px;
+    color: #6b5b3a;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-family: 'Courier Prime', monospace;
+  }
+
+  .headline-story .byline span {
+    font-style: italic;
+    color: #8b2010;
+    text-transform: none;
+    letter-spacing: 0;
+    font-family: 'Playfair Display', serif;
+  }
+
+  .alert-box {
+    background: #f5efe0;
+    border: 3px double #8b2010;
+    padding: 16px 20px;
+    margin: 0 0 24px;
+    position: relative;
+  }
+
+  .alert-box .alert-head {
+    font-family: 'Courier Prime', monospace;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #8b2010;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+
+  .alert-box ul { list-style: none; margin: 0; padding: 0; }
+  .alert-box li {
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: #2a2010;
+    padding: 5px 0 5px 22px;
+    position: relative;
+    border-bottom: 1px dotted #c4b694;
+  }
+  .alert-box li:last-child { border-bottom: none; }
+  .alert-box li::before {
+    content: '☞';
+    position: absolute;
+    left: 2px;
+    color: #8b2010;
+    font-weight: 700;
+  }
+  .alert-box .alert-cta {
+    text-align: center;
+    margin-top: 10px;
+    font-family: 'Courier Prime', monospace;
+    font-size: 12px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  .alert-box .alert-cta a { color: #8b2010; font-weight: 700; text-decoration: none; }
+  .alert-box .alert-cta a:hover { text-decoration: underline; }
+
+  .market-ticker {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 8px;
+    padding: 14px 16px;
+    background: linear-gradient(135deg, #1a1508, #2a2010);
+    border: 1px solid #8b774c;
+    margin-bottom: 24px;
+    font-family: 'Courier Prime', monospace;
+  }
+
+  .ticker-item {
+    text-align: center;
+    padding: 4px 8px;
+    border-right: 1px solid rgba(196,182,148,0.2);
+  }
+
+  .ticker-item:last-child { border-right: none; }
+
+  .ticker-item .coin {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #c4b694;
+  }
+
+  .ticker-item .price {
+    font-size: 15px;
+    font-weight: 700;
+    color: #f0e9d5;
+  }
+
+  .ticker-item .change {
+    font-size: 11px;
+  }
+
+  .change.up { color: #4a9; }
+  .change.down { color: #c44; }
+
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin-bottom: 20px;
+  }
+
+  .col { min-width: 0; }
+
+  .article {
+    margin-bottom: 22px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid #d4c9a8;
+  }
+
+  .article:last-child { border-bottom: none; margin-bottom: 0; }
+
+  .article h3 {
+    font-size: 22px;
+    font-weight: 700;
+    color: #1a1008;
+    line-height: 1.15;
+    margin-bottom: 6px;
+  }
+
+  .article h3 a { color: #1a1008; text-decoration: none; }
+  .article h3 a:hover { color: #8b2010; }
+
+  .article .meta {
+    font-family: 'Courier Prime', monospace;
+    font-size: 11px;
+    color: #7a6a4a;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .article .meta .tag {
+    background: #1a1008;
+    color: #f0e9d5;
+    padding: 1px 6px;
+    font-size: 9px;
+    letter-spacing: 2px;
+    margin-right: 8px;
+  }
+
+  .article p {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #2a2010;
+    margin-bottom: 6px;
+  }
+
+  .article .read-more {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #8b2010;
+    font-family: 'Courier Prime', monospace;
+  }
+
+  .article .read-more a { color: #8b2010; text-decoration: none; }
+  .article .read-more a:hover { text-decoration: underline; }
+
+  .feature-box {
+    background: linear-gradient(135deg, #f0e9d5, #e8ddc0);
+    border: 2px solid #8b774c;
+    padding: 20px;
+    margin-bottom: 22px;
+    position: relative;
+  }
+
+  .feature-box::before {
+    content: '\u2726';
+    position: absolute;
+    top: -12px; left: 50%;
+    transform: translateX(-50%);
+    font-size: 20px;
+    color: #8b774c;
+    background: #f5efe0;
+    padding: 0 10px;
+  }
+
+  .feature-box h3 {
+    font-size: 20px;
+    text-align: center;
+    font-weight: 700;
+    color: #1a1008;
+    margin-bottom: 10px;
+  }
+
+  .feature-box p {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #2a2010;
+  }
+
+  .feature-box .read-more {
+    text-align: center;
+    margin-top: 10px;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-family: 'Courier Prime', monospace;
+  }
+  .feature-box .read-more a { color: #8b2010; text-decoration: none; }
+  .feature-box .read-more a:hover { text-decoration: underline; }
+
+  .three-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 24px;
+    border-top: 2px solid #8b774c;
+    padding-top: 20px;
+    margin-top: 20px;
+  }
+
+  .three-col .article h3 { font-size: 17px; }
+
+  .bottom-rule {
+    border-top: 2px solid #8b774c;
+    margin-top: 20px;
+    padding-top: 14px;
+    text-align: center;
+    font-family: 'Courier Prime', monospace;
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #7a6a4a;
+  }
+
+  .bottom-rule .ornament {
+    font-size: 18px;
+    color: #8b774c;
+    letter-spacing: 12px;
+  }
+
+  .dropcap::first-letter {
+    font-size: 48px;
+    font-weight: 900;
+    float: left;
+    line-height: 0.8;
+    margin-right: 8px;
+    margin-top: 4px;
+    color: #1a1008;
+    font-family: 'UnifrakturMaguntia', serif;
+  }
+
+  @media (max-width: 900px) {
+    .two-col { grid-template-columns: 1fr; gap: 20px; }
+    .three-col { grid-template-columns: 1fr 1fr; }
+    .masthead h1 { font-size: 48px; }
+    .headline-story h2 { font-size: 30px; }
+  }
+
+  @media (max-width: 600px) {
+    .three-col { grid-template-columns: 1fr; }
+    .masthead h1 { font-size: 36px; }
+    .headline-story h2 { font-size: 24px; }
+    body { padding: 20px 10px; }
+    .content { padding: 15px; }
+    .market-ticker { grid-template-columns: repeat(3, 1fr); }
+  }
+
+  @media print {
+    body { background: none; padding: 0; }
+    .newspaper { box-shadow: none; border: 1px solid #000; }
+  }
+</style>
+</head>
+<body>
+
+<div class="newspaper">
+
+  <div class="top-ornament">
+    <div class="line"></div>
+    <span>✦ Established 2024 ✦</span>
+    <div class="line"></div>
+  </div>
+
+  <div class="masthead">
+    <div class="subtitle">The Voice of the Digital Age</div>
+    <h1>The Daily Cryptograph</h1>
+    <div class="date-line">
+      <span>Vol. III, No. CCXXI</span>
+      <span>Saturday, August 15, 2026</span>
+      <span>Price: One Satoshi</span>
+    </div>
+    <div class="edition">★ Morning Edition ★</div>
+  </div>
+
+  <div class="content">
+
+    <div class="headline-story">
+      <div class="label">★ Prediction Markets — The Injunction ★</div>
+      <h2>Washington Judge Orders Kalshi to Halt<br>Broad Range of Prediction Market Contracts</h2>
+      <p class="subhead">A King County Superior Court judge rejects federal preemption and bars sports, election and entertainment event contracts in the state — as the attorney general accuses the platform of running "an illegal gambling operation" and geofencing deadlines loom</p>
+      <p class="byline">By <span>The Daily Cryptograph Staff</span>  |  August 15, 2026</p>
+      <p class="read-more" style="margin-top:10px; font-size:11px; text-transform:uppercase; letter-spacing:2px; font-family:'Courier Prime',monospace;"><a href="https://cointelegraph.com/news/kalshi-stop-prediction-market-contracts-washington" target="_blank" style="color:#8b2010; text-decoration:none;">Continue Reading on Cointelegraph →</a></p>
+    </div>
+
+    <div class="alert-box">
+      <div class="alert-head">☞ Today's Bulletin — Five Things to Know</div>
+      <ul>
+        <li><strong>Kalshi must geofence Washington customers by Aug. 19</strong>, with a GeoComply multi-source geofencing system required by Sept. 2 — contracts tied to commodities, climate, economics and finance are exempt from the injunction.</li>
+        <li><strong>Galaxy Digital cut its CLARITY Act passage odds to 10%</strong> — the Senate reconvenes Sept. 14 with only about two-to-three weeks left in the session to pass the landmark crypto market-structure bill.</li>
+        <li><strong>Markus Thielen calls $1 million Bitcoin by 2030 "mathematically impossible"</strong> — reaching that price would require roughly $15 trillion in new inflows, about 25% of the total value of the US stock market.</li>
+        <li><strong>Swan CEO Cory Klippsten sees a Bitcoin bottom in October</strong> — possibly at $57,000 or even $53,000 — before a recovery toward $130,000 ahead of the 2028 halving, with altcoins "basically dead" as money.</li>
+        <li><strong>Morgan Stanley's BlackRock Bitcoin ETF holdings rose 23% to ~16.5 million shares in Q2</strong> — even as the position's value fell 18% with Bitcoin's slide, while Circle shares jumped from 1.46 million to 8.32 million.</li>
+      </ul>
+      <div class="alert-cta">Full roundup: <a href="https://cointelegraph.com/news/what-happened-in-crypto-today" target="_blank">Here's What Happened in Crypto Today →</a> &nbsp;|&nbsp; Markets ticker: <a href="https://cointelegraph.com/markets" target="_blank">Cointelegraph Markets →</a></div>
+    </div>
+
+    <div class="market-ticker">
+      <div class="ticker-item">
+        <div class="coin">BTC</div>
+        <div class="price">$63,047.72</div>
+        <div class="change up">▲ 0.03%</div>
+      </div>
+      <div class="ticker-item">
+        <div class="coin">ETH</div>
+        <div class="price">$1,883.54</div>
+        <div class="change up">▲ 0.14%</div>
+      </div>
+      <div class="ticker-item">
+        <div class="coin">SOL</div>
+        <div class="price">$75.41</div>
+        <div class="change down">▼ 0.26%</div>
+      </div>
+      <div class="ticker-item">
+        <div class="coin">XRP</div>
+        <div class="price">$1.00</div>
+        <div class="change down">▼ 0.32%</div>
+      </div>
+      <div class="ticker-item">
+        <div class="coin">ADA</div>
+        <div class="price">$0.1786</div>
+        <div class="change down">▼ 0.75%</div>
+      </div>
+      <div class="ticker-item">
+        <div class="coin">DOGE</div>
+        <div class="price">$0.0700</div>
+        <div class="change up">▲ 0.19%</div>
+      </div>
+      <div class="ticker-item">
+        <div class="coin">ZEC</div>
+        <div class="price">$490.41</div>
+        <div class="change up">▲ 0.44%</div>
+      </div>
+      <div class="ticker-item">
+        <div class="coin">BNB</div>
+        <div class="price">$611.31</div>
+        <div class="change up">▲ 0.80%</div>
+      </div>
+      <div class="ticker-item">
+        <div class="coin">XMR</div>
+        <div class="price">$408.36</div>
+        <div class="change up">▲ 2.86%</div>
+      </div>
+      <div class="ticker-item">
+        <div class="coin">HYPE</div>
+        <div class="price">$56.84</div>
+        <div class="change up">▲ 1.81%</div>
+      </div>
+      <div class="ticker-item">
+        <div class="coin">TRX</div>
+        <div class="price">$0.3317</div>
+        <div class="change down">▼ 0.16%</div>
+      </div>
+      <div class="ticker-item">
+        <div class="coin">LINK</div>
+        <div class="price">$9.50</div>
+        <div class="change up">▲ 7.41%</div>
+      </div>
+      <div class="ticker-item">
+        <div class="coin">XLM</div>
+        <div class="price">$0.1587</div>
+        <div class="change down">▼ 0.76%</div>
+      </div>
+    </div>
+
+    <div class="two-col">
+      <div class="col">
+
+        <div class="article">
+          <div class="meta"><span class="tag">Regulation</span> Washington — The Odds</div>
+          <h3><a href="https://cointelegraph.com/news/galaxy-lowers-clarity-act-odds-10" target="_blank">Galaxy Lowers CLARITY Act Passage Odds to 10%</a></h3>
+          <p class="dropcap">Galaxy Digital has lowered its estimate of the <strong>Digital Asset Market Clarity (CLARITY) Act's chances of passing in 2026 to 10%</strong>, warning that multiple political issues remain unresolved and the Senate will have only about two to three weeks to pass it when it reconvenes on Sept. 14. Unless an initial motion to proceed vote occurs immediately upon lawmakers' return, the bill could clear the Senate only if it <strong>"dominates basically the entire working session,"</strong> wrote Galaxy's head of firmwide research, Alex Thorn, in a Friday X post.</p>
+          <p>Lawmakers still must work through issues including ethics rules for government officials' involvement in crypto and pressure from banks over stablecoin yield provisions. Galaxy's estimate has slid steadily — from <strong>75% on May 22</strong> to 60% on June 6, 50% on June 26 and now 10%. The CLARITY Act cleared the Senate Banking Committee in May, but most Democrats and the banking industry have pushed back, arguing it would let crypto firms offer yields on stablecoins without facing the same requirements as banks.</p>
+          <div class="read-more"><a href="https://cointelegraph.com/news/galaxy-lowers-clarity-act-odds-10" target="_blank">Continue Reading →</a></div>
+        </div>
+
+        <div class="article">
+          <div class="meta"><span class="tag">Institutions</span> 13F Season — The Buyer</div>
+          <h3><a href="https://cointelegraph.com/news/morgan-stanley-buys-blackrock-bitcoin-etf-q2" target="_blank">Morgan Stanley's BlackRock Bitcoin ETF Holdings Rise 23% in Q2</a></h3>
+          <p>Morgan Stanley reported larger crypto fund positions in the second quarter, led by an increase of more than 3 million shares in BlackRock's Bitcoin ETF. Holdings in the <strong>iShares Bitcoin Trust (IBIT) rose 23% to around 16.5 million shares</strong> from 13.4 million, per its Q2 13F filing with the SEC — although the position's value fell about 18% to $549 million as Bitcoin declined during the quarter.</p>
+          <p>The bank also reported <strong>2.57 million shares of its own Morgan Stanley Bitcoin Trust</strong>, worth about $43.3 million and launched in April, roughly tripled its iShares Ethereum Trust position to 4.6 million shares and added new Solana exposure. Circle Internet Group — the company behind USDC — jumped from 1.46 million to 8.32 million shares, while Coinbase and CleanSpark positions were trimmed and an roughly 8 million-share Bitfarms stake was fully exited.</p>
+          <div class="read-more"><a href="https://cointelegraph.com/news/morgan-stanley-buys-blackrock-bitcoin-etf-q2" target="_blank">Continue Reading →</a></div>
+        </div>
+
+      </div>
+      <div class="col">
+
+        <div class="article">
+          <div class="meta"><span class="tag">Markets</span> The Cycle Call</div>
+          <h3><a href="https://cointelegraph.com/markets/bitcoin-bottom-october-altcoins-basically-dead-swan-ceo" target="_blank">Bitcoin Could Bottom in October, Altcoins Are 'Basically Dead': Swan CEO</a></h3>
+          <p class="dropcap">Bitcoin could bottom in <strong>October</strong> before recovering to around <strong>$130,000</strong> ahead of the 2028 halving, according to Swan Bitcoin CEO Cory Klippsten. With BTC's peak above $126,000 in early October 2025, "the market should bottom in October," he told Cointelegraph — noting Bitcoin has historically bottomed about 12 months after each previous bull market peak, while cautioning against extrapolating from only a few cycles.</p>
+          <p>Klippsten said Bitcoin could fall to <strong>$57,000, or even $53,000</strong>, before a quick recovery. He called altcoins <strong>"basically dead"</strong> as competitors to Bitcoin as money, arguing the best outcome for crypto and DeFi is to "become part of TradFi" — pointing to Hyperliquid as a centralized business that will eventually be "sucked up by TradFi and be thought of as an exchange and a bank."</p>
+          <div class="read-more"><a href="https://cointelegraph.com/markets/bitcoin-bottom-october-altcoins-basically-dead-swan-ceo" target="_blank">Continue Reading →</a></div>
+        </div>
+
+        <div class="article">
+          <div class="meta"><span class="tag">L1s</span> SIMD-0553 — The Fee Overhaul</div>
+          <h3><a href="https://cointelegraph.com/magazine/solana-wants-its-biggest-resource-hogs-to-pay-more" target="_blank">Solana's Fee Overhaul Increases Burn and Makes Resource Hogs Pay</a></h3>
+          <p>Solana Improvement Document <strong>SIMD-0553</strong> would make the network's most resource-intensive users pay more while cutting costs for simpler transactions — and would increase the amount of SOL burned, one day possibly even helping make the token deflationary. Author Cavey, a researcher at infrastructure firm Temporal, argues fees currently don't reflect real costs: <strong>"If I submit a transaction that does nothing versus a transaction that burns 200 million CPU cycles, I'm charged the same amount."</strong></p>
+          <p>The proposal ties fees to the resources each transaction requests and <strong>burns the resource fee rather than paying it to validators</strong> — a change not welcomed by all, with contributor bji arguing validator incomes "should not be arbitrarily reduced." Under the proposed model, stablecoin and token transfers could become roughly <strong>20% cheaper</strong>, while the daily SOL burn could rise from around 648 SOL to <strong>7,500–9,000 SOL</strong>.</p>
+          <div class="read-more"><a href="https://cointelegraph.com/magazine/solana-wants-its-biggest-resource-hogs-to-pay-more" target="_blank">Continue Reading →</a></div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="feature-box">
+      <h3>✦ Feature: The $1 Million Question ✦</h3>
+      <p>Bitcoin to $1 million by 2030 is <strong>"mathematically impossible,"</strong> says Markus Thielen, head of research at 10x Research. The numbers, he argues, simply don't add up: with a market cap around $1.28 trillion, Bitcoin would need to attract another <strong>$15 trillion in capital</strong> — roughly 25% of the US stock market's total value — over the next four years. "It takes trillions and trillions of dollars to move the price really materially higher, and that's why we are not as bullish."</p>
+      <p>Thielen adds a psychological wrinkle: the higher Bitcoin climbs, the weaker retail sentiment becomes, because <strong>"people don't want to buy a tenth or a hundredth of a Bitcoin; they want to buy a whole Bitcoin."</strong> He warns against expecting a swift return to the $126,000 all-time high — "If we go back to, let's say, $100K, that would already be a big, big achievement" — and dismisses the round-number $1 million forecasts of figures like Brian Armstrong, Jack Dorsey and Cathie Wood as an easy way to generate media attention that ultimately <strong>"tend[s] to hurt retail investors."</strong> To the question of whether Bitcoin could ever reach $1 million: <strong>"I don't want to say never, but a million is really a high number."</strong></p>
+      <div class="read-more"><a href="https://cointelegraph.com/magazine/bitcoin-1m-by-2030-is-mathematically-impossible-markus-thielen" target="_blank">Read Full Story on Cointelegraph →</a></div>
+    </div>
+
+    <div class="three-col">
+      <div class="article">
+        <div class="meta"><span class="tag">AML</span> Dublin — The Strategy</div>
+        <h3><a href="https://cointelegraph.com/news/ireland-industry-standards-crypto-gambling-aml" target="_blank">Ireland Plans Industry Standards for Illicit Crypto Use</a></h3>
+        <p>Ireland published its first National Anti-Money Laundering strategy on Thursday, with final elements introducing new AML obligations for crypto-asset service providers: <strong>enhanced checks on transfers involving private crypto wallets</strong> and stricter due diligence when dealing with overseas crypto firms. The document also addresses industry standards "relating to the acceptance of crypto-related activities" as a source of funds for gambling, building on the EU's MiCA framework.</p>
+        <div class="read-more"><a href="https://cointelegraph.com/news/ireland-industry-standards-crypto-gambling-aml" target="_blank">Read More →</a></div>
+      </div>
+
+      <div class="article">
+        <div class="meta"><span class="tag">Institutions</span> The Ivy League</div>
+        <h3><a href="https://cointelegraph.com/news/dartmouth-endowment-crypto-investments-btc-eth-sol-dropped" target="_blank">Dartmouth Endowment's Crypto Exposure Drops by $2M Amid Falling Prices</a></h3>
+        <p>Dartmouth College's $9 billion endowment saw the value of its crypto ETF holdings — the <strong>Bitwise Solana staking ETF, Grayscale Ethereum staking ETF and BlackRock's iShares Bitcoin ETF</strong> — fall about 15% to $12.4 million by June 30, per a Thursday SEC filing. The decline tracked falling prices: Bitcoin down 7.7%, Solana 9.6% and Ether 10.8% since March. Dartmouth was among the first US universities to add digital assets in 2025.</p>
+        <div class="read-more"><a href="https://cointelegraph.com/news/dartmouth-endowment-crypto-investments-btc-eth-sol-dropped" target="_blank">Read More →</a></div>
+      </div>
+
+      <div class="article">
+        <div class="meta"><span class="tag">Markets</span> Onchain</div>
+        <h3><a href="https://cointelegraph.com/markets/bitcoin-speculators-in-the-red-keep-price-pinned-below-687k-new-analysis" target="_blank">Bitcoin Speculators Keep BTC Price 'Pinned' Below $68.7K: Glassnode</a></h3>
+        <p>Glassnode says short-term holders — coins acquired within six months — are <strong>~7.2% underwater</strong>, with a cost basis of $68,700 forming key resistance. "The cost-basis ladder frames the stalemate": spot sits above the Median Realized Price at $63.0K and below the STH cost basis, and Bitfinex Alpha adds that the <strong>$62,000–$65,000 band holds 1.79 million BTC — 8.93% of circulating supply</strong>.</p>
+        <div class="read-more"><a href="https://cointelegraph.com/markets/bitcoin-speculators-in-the-red-keep-price-pinned-below-687k-new-analysis" target="_blank">Read More →</a></div>
+      </div>
+    </div>
+
+    <div class="three-col" style="border-top: 1px solid #d4c9a8; margin-top: 10px; padding-top: 16px;">
+      <div class="article">
+        <div class="meta"><span class="tag">Business</span> The Weekly Column</div>
+        <h3><a href="https://cointelegraph.com/news/crypto-biz-bitcoin-self-custody-etf-inflows-strategy-riot-ai" target="_blank">Crypto Biz: ETF Inflows Rebound as Self-Custody Risks Come Into Focus</a></h3>
+        <p>US spot Bitcoin ETFs attracted <strong>roughly $1 billion in weekly net inflows</strong> — the third-best week since October — even as a $116 million Coldcard hardware wallet exploit reopened the self-custody debate. Strategy CEO Phong Le says the company will resume accumulation later this year (it holds 840,000+ BTC), Anthropic reportedly struck a <strong>$9 billion compute deal with Riot Platforms</strong>, and Trump Media will revamp its crypto treasury after a $238 million Q2 loss.</p>
+        <div class="read-more"><a href="https://cointelegraph.com/news/crypto-biz-bitcoin-self-custody-etf-inflows-strategy-riot-ai" target="_blank">Read More →</a></div>
+      </div>
+
+      <div class="article">
+        <div class="meta"><span class="tag">Treasuries</span> Tokyo — No Sale</div>
+        <h3><a href="https://cointelegraph.com/news/gerovich-shuts-down-bitcoin-sale-metaplanets-transfer" target="_blank">Metaplanet CEO Shuts Down Bitcoin Sale Speculation After $322M Transfer</a></h3>
+        <p><strong>"This was a routine custody operation. No bitcoin was sold, and our holdings remain 43,000 BTC,"</strong> said Metaplanet CEO Simon Gerovich after the company moved 5,014 BTC ($322 million) between custodial addresses for about $8 in network fees. The third-largest public Bitcoin treasury company — and largest in Asia — targets <strong>100,000 BTC by end-2026 and 210,000 BTC by end-2027</strong>.</p>
+        <div class="read-more"><a href="https://cointelegraph.com/news/gerovich-shuts-down-bitcoin-sale-metaplanets-transfer" target="_blank">Read More →</a></div>
+      </div>
+
+      <div class="article">
+        <div class="meta"><span class="tag">RWA</span> Fintech — Figure</div>
+        <h3><a href="https://cointelegraph.com/news/figure-q2-loan-marketplace-volume-profit" target="_blank">Figure Reports $4.3B in Loan Marketplace Volume as Profit Nearly Triples</a></h3>
+        <p>Figure Technology Solutions reported <strong>$4.3 billion in consumer loan marketplace volume for Q2</strong>, up 132% year over year, with net income up 192% to $87 million. Third-party loans traded on Figure Connect accounted for $2.8 billion, or 65%, of the total. CEO Michael Tannenbaum said weekly loan applications surpassed <strong>$1 billion in July</strong>; the company guides to $4.8–$5.2 billion in Q3 volume.</p>
+        <div class="read-more"><a href="https://cointelegraph.com/news/figure-q2-loan-marketplace-volume-profit" target="_blank">Read More →</a></div>
+      </div>
+    </div>
+
+    <div class="bottom-rule">
+      <div class="ornament">✦ ✦ ✦</div>
+      <p>The Daily Cryptograph  |  Morning Edition  |  Saturday, August 15, 2026</p>
+      <p>All news sourced from Cointelegraph  |  Data as of market open</p>
+      <p>Not financial advice  |  DYOR  |  NFA</p>
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>
