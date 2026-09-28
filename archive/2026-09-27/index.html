@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Daily Cryptograph — Sunday, September 27, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=UnifrakturMaguntia&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #d4c9a8;
+    background-image:
+      radial-gradient(ellipse at 20% 50%, rgba(139,119,76,0.08) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 50%, rgba(139,119,76,0.08) 0%, transparent 50%);
+    min-height: 100vh;
+    padding: 40px 20px;
+    font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  }
+
+  .newspaper {
+    max-width: 1200px;
+    margin: 0 auto;
+    background: #f5efe0;
+    background-image:
+      linear-gradient(135deg, #f8f3e6 0%, #f0e9d5 50%, #f5efe0 100%);
+    border: 2px solid #8b774c;
+    box-shadow:
+      0 0 0 1px #a09070,
+      0 0 0 3px #c4b694,
+      0 8px 32px rgba(0,0,0,0.25),
+      inset 0 0 60px rgba(139,119,76,0.06);
+    padding: 0;
+    position: relative;
+  }
+
+  .newspaper::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(139,119,76,0.02) 2px,
+        rgba(139,119,76,0.02) 4px
+      );
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .top-ornament {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 30px 0;
+    color: #6b5b3a;
+    font-size: 14px;
+    letter-spacing: 4px;
+    font-family: 'Courier Prime', monospace;
+    text-transform: uppercase;
+  }
+
+  .top-ornament .line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, transparent, #8b774c, transparent);
+  }
+
+  .top-ornament span {
+    padding: 0 18px;
+  }
+
+  .masthead {
+    text-align: center;
+    padding: 15px 30px 5px;
+    border-bottom: 3px double #6b5b3a;
+    position: relative;
+  }
+
+  .masthead .subtitle {
+    font-family: 'Courier Prime', monospace;
+    font-size: 11px;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    color: #6b5b3a;
+    margin-bottom: 8px;
+  }
+
+  .masthead h1 {
+    font-family: 'UnifrakturMaguntia', 'Playfair Display', serif;
+    font-size: 72px;
+    font-weight: 400;
+    color: #2a2010;
+    letter-spacing: 4px;
+    line-height: 1;
+    text-shadow: 2px 2px 0 rgba(0,0,0,0.05);
+    margin-bottom: 6px;
+  }
+
+  .masthead .date-line {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #5a4a2a;
+    border-top: 1px solid #c4b694;
+    border-bottom: 1px solid #c4b694;
+    padding: 6px 0;
+    font-family: 'Courier Prime', monospace;
+    margin-top: 8px;
+  }
+
+  .masthead .edition {
+    border-top: 1px solid #c4b694;
+    padding: 4px 0;
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: #7a6a4a;
+    text-transform: uppercase;
+    font-family: 'Courier Prime', monospace;
+    font-style: italic;
+  }
+
+  .masthead .edition.extra {
+    color: #8b2010;
+    font-weight: 700;
+    font-style: normal;
+    letter-spacing: 4px;
+    background: linear-gradient(135deg, rgba(139,32,16,0.06), rgba(139,32,16,0.12));
+  }
+
+  .content {
+    padding: 20px 30px 30px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .headline-story {
+    text-align: center;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #8b774c;
+    margin-bottom: 20px;
+  }
+
+  .headline-story .label {
+    font-family: 'Courier Prime', monospace;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #8b2010;
+    margin-bottom: 10px;
+    font-weight: 700;
+  }
+
+  .headline-story h2 {
+    font-size: 42px;
+    font-weight: 900;
+    color: #1a1008;
+    line-height: 1.1;
+    margin-bottom: 10px;
+    letter-spacing: -0.5px;
+  }
+
+  .headline-story .subhead {
+    font-size: 18px;
+    font-style: italic;
+    color: #5a4a2a;
+    margin-bottom: 12px;
+    line-height: 1.4;
+  }
+
+  .headline-story .byline {
+    font-size: 13px;
+    color: #6b5b3a;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-family: 'Courier Prime', monospace;
+  }
+
+  .headline-story .byline span {
+    font-style: italic;
+    color: #8b2010;
+    text-transform: none;
+    letter-spacing: 0;
+    font-family: 'Playfair Display', serif;
+  }
+
+  .alert-box {
+    background: #f5efe0;
+    border: 3px double #8b2010;
+    padding: 16px 20px;
+    margin: 0 0 24px;
+    position: relative;
+  }
+
+  .alert-box .alert-head {
+    font-family: 'Courier Prime', monospace;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #8b2010;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+
+  .alert-box ul { list-style: none; margin: 0; padding: 0; }
+  .alert-box li {
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: #2a2010;
+    padding: 5px 0 5px 22px;
+    position: relative;
+    border-bottom: 1px dotted #c4b694;
+  }
+  .alert-box li:last-child { border-bottom: none; }
+
+  .alert-box li::before {
+    content: '☞';
+    position: absolute;
+    left: 2px;
+    color: #8b2010;
+    font-weight: 700;
+  }
+  .alert-box .alert-cta {
+    text-align: center;
+    margin-top: 10px;
+    font-family: 'Courier Prime', monospace;
+    font-size: 12px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  .alert-box .alert-cta a { color: #8b2010; font-weight: 700; text-decoration: none; }
+  .alert-box .alert-cta a:hover { text-decoration: underline; }
+
+  .market-ticker {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 8px;
+    padding: 14px 16px;
+    background: linear-gradient(135deg, #1a1508, #2a2010);
+    border: 1px solid #8b774c;
+    margin-bottom: 24px;
+    font-family: 'Courier Prime', monospace;
+  }
+
+  .ticker-item {
+    text-align: center;
+    padding: 4px 8px;
+    border-right: 1px solid rgba(196,182,148,0.2);
+  }
+
+  .ticker-item:last-child { border-right: none; }
+
+  .ticker-item .coin {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #c4b694;
+  }
+
+  .ticker-item .price {
+    font-size: 15px;
+    font-weight: 700;
+    color: #f0e9d5;
+  }
+
+  .ticker-item .change {
+    font-size: 11px;
+  }
+
+  .change.up { color: #4a9; }
+  .change.down { color: #c44; }
+
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin-bottom: 20px;
+  }
+
+  .col { min-width: 0; }
+
+  .article {
+    margin-bottom: 22px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid #d4c9a8;
+  }
+
+  .article:last-child { border-bottom: none; margin-bottom: 0; }
+
+  .article h3 {
+    font-size: 22px;
+    font-weight: 700;
+    color: #1a1008;
+    line-height: 1.15;
+    margin-bottom: 6px;
+  }
+
+  .article h3 a { color: #1a1008; text-decoration: none; }
+  .article h3 a:hover { color: #8b2010; }
+
+  .article .meta {
+    font-family: 'Courier Prime', monospace;
+    font-size: 11px;
+    color: #7a6a4a;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .article .meta .tag {
+    background: #1a1008;
+    color: #f0e9d5;
+    padding: 1px 6px;
+    font-size: 9px;
+    letter-spacing: 2px;
+    margin-right: 8px;
+  }
+
+  .article p {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #2a2010;
+    margin-bottom: 6px;
+  }
+
+  .article .read-more {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #8b2010;
+    font-family: 'Courier Prime', monospace;
+  }
+
+  .article .read-more a { color: #8b2010; text-decoration: none; }
+  .article .read-more a:hover { text-decoration: underline; }
+
+  .feature-box {
+    background: linear-gradient(135deg, #f0e9d5, #e8ddc0);
+    border: 2px solid #8b774c;
+    padding: 20px;
+    margin-bottom: 22px;
+    position: relative;
+  }
+
+  .feature-box::before {
+    content: '\2726';
+    position: absolute;
+    top: -12px; left: 50%;
+    transform: translateX(-50%);
+    font-size: 20px;
+    color: #8b774c;
+    background: #f5efe0;
+    padding: 0 10px;
+  }
+
+  .feature-box h3 {
+    font-size: 20px;
+    text-align: center;
+    font-weight: 700;
+    color: #1a1008;
+    margin-bottom: 10px;
+  }
+
+  .feature-box p {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #2a2010;
+  }
+
+  .feature-box .read-more {
+    text-align: center;
+    margin-top: 10px;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-family: 'Courier Prime', monospace;
+  }
+  .feature-box .read-more a { color: #8b2010; text-decoration: none; }
+  .feature-box .read-more a:hover { text-decoration: underline; }
+
+  .three-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 24px;
+    border-top: 2px solid #8b774c;
+    padding-top: 20px;
+    margin-top: 20px;
+  }
+
+  .three-col .article h3 { font-size: 17px; }
+  .bottom-rule {
+    border-top: 2px solid #8b774c;
+    margin-top: 20px;
+    padding-top: 14px;
+    text-align: center;
+    font-family: 'Courier Prime', monospace;
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #7a6a4a;
+  }
+
+  .bottom-rule .ornament {
+    font-size: 18px;
+    color: #8b774c;
+    letter-spacing: 12px;
+  }
+
+  .dropcap::first-letter {
+    font-size: 48px;
+    font-weight: 900;
+    float: left;
+    line-height: 0.8;
+    margin-right: 8px;
+    margin-top: 4px;
+    color: #1a1008;
+    font-family: 'UnifrakturMaguntia', serif;
+  }
+
+  @media (max-width: 900px) {
+    .two-col { grid-template-columns: 1fr; gap: 20px; }
+    .three-col { grid-template-columns: 1fr 1fr; }
+    .masthead h1 { font-size: 48px; }
+    .headline-story h2 { font-size: 30px; }
+  }
+
+  @media (max-width: 600px) {
+    .three-col { grid-template-columns: 1fr; }
+    .masthead h1 { font-size: 36px; }
+    .headline-story h2 { font-size: 24px; }
+    body { padding: 20px 10px; }
+    .content { padding: 15px; }
+    .market-ticker { grid-template-columns: repeat(3, 1fr); }
+  }
+
+  @media print {
+    body { background: none; padding: 0; }
+    .newspaper { box-shadow: none; border: 1px solid #000; }
+  }
+</style>
+</head>
+<body>
+
+<div class="newspaper">
+
+  <div class="top-ornament">
+    <div class="line"></div>
+    <span>✦ Established 2024 ✦</span>
+    <div class="line"></div>
+  </div>
+
+<div class="masthead">
+  <div class="subtitle">The Voice of the Digital Age</div>
+  <h1>The Daily Cryptograph</h1>
+  <div class="date-line">
+    <span>Vol. III, No. CCLXI</span>
+    <span>Sunday, September 27, 2026</span>
+    <span>Price: One Satoshi</span>
+  </div>
+  <div class="edition">★ Morning Edition ★</div>
+</div>
+
+<div class="content">
+
+  <div class="headline-story">
+    <div class="label">★ A Ban on Official Coin ★</div>
+    <h2>Newsom Signs a California Ban on Memecoins Issued by Public Officials, and Points Squarely at the President's Own</h2>
+    <p class="subhead">Assembly Bill 2409 bars state and local officeholders from issuing the tokens, and stops service providers from offering them to Californians. It reaches only coins issued on or after January 1, 2027. A companion bill extends the state's money-laundering statutes to digital assets and hands police powers to freeze, seize and forfeit them.</p>
+    <p class="byline">By <span>The Daily Cryptograph Staff</span>  |  September 27, 2026</p>
+    <p class="dropcap" style="text-align:left; font-size:15px; line-height:1.6; margin-top:12px; color:#2a2010;"><strong>California Governor Gavin Newsom</strong> signed legislation on Sunday barring state and local public officials from issuing memecoins, and used the occasion to criticise <strong>US President Donald Trump</strong>'s crypto ventures. The bill, <strong>Assembly Bill 2409</strong>, was introduced by Assembly Member <strong>Avelino Valencia</strong> on <strong>Feb. 20, 2026</strong>. It also prohibits digital asset service providers from offering certain memecoins — those issued by, or in partnership with, federal, state or local public officials — to California residents, and applies to tokens issued on or after <strong>Jan. 1, 2027</strong>.</p>
+    <p style="text-align:left; font-size:15px; line-height:1.6; margin-top:10px; color:#2a2010;">"No official should profit off their office — and we're putting stronger protections in place to ensure it doesn't happen in our state," Newsom said Sunday, singling out the president's memecoin launch of 2025. Existing California law already forbids state officers and employees from engaging in employment or enterprise inconsistent with their duties; AB 2409 adds the ban on <em>issuing</em> memecoins to the Government Code, and authorises the state attorney general, a district attorney, a city attorney or county counsel to enforce it by civil action.</p>
+    <p style="text-align:left; font-size:15px; line-height:1.6; margin-top:10px; color:#2a2010;">The governor signed a second measure the same day. <strong>Senate Bill 1208</strong> expands California's money-laundering statutes to cover illicit transactions made using digital assets, and broadly authorises law enforcement to freeze, seize and forfeit digital assets tied to crimes. Together the two bills place the most populous state's official coin and its enforcement machinery on the same footing as the instruments it already polices.</p>
+    <p class="read-more" style="margin-top:10px; font-size:11px; text-transform:uppercase; letter-spacing:2px; font-family:'Courier Prime',monospace;"><a href="https://cointelegraph.com/news/newsom-signs-california-ban-on-public-officials-issuing-memecoins" target="_blank" style="color:#8b2010; text-decoration:none;">Continue Reading on Cointelegraph →</a></p>
+  </div>
+
+  <div class="alert-box">
+    <div class="alert-head">☞ Sunday Bulletin — A Governor's Pen, a Chain Rewound, and a Bill of Digital Rights</div>
+    <ul>
+      <li><strong>Zano rewinds a month of its own history</strong> — The layer-1 privacy chain restarted at block <strong>3,833,000</strong>, immediately before the <strong>Hard Fork 6</strong> upgrade that introduced the exploited <strong>Gateway Address</strong> feature, after unauthorised <strong>ZANO</strong> and <strong>Freedom Dollar</strong> entered circulation. A month of legitimate transactions is invalidated along with them, and payments already settled on other blockchains cannot be unwound. The team promises a claims and reimbursement process.</li>
+      <li><strong>Saylor proposes five digital freedoms</strong> — In an essay posted to X on Saturday, <strong>Strategy</strong> executive chairman <strong>Michael Saylor</strong> argued the age of digital assets and intelligence needs a "bill of digital rights" rather than restrictions: the freedom to create assets, to issue them, to hold them or choose a custodian, to transfer them, and to use them. "Our ambition should be to enable 10 million new companies to raise capital," he wrote.</li>
+      <li><strong>Riot retires a $200 million facility</strong> — <strong>Riot Platforms</strong> repaid the remaining principal and interest on a <strong>Coinbase Credit</strong> loan on Monday, releasing collateral pledged in <strong>Bitcoin</strong>, <strong>USDC</strong> and cash held at <strong>Coinbase Custody Trust</strong>. A Friday <strong>SEC</strong> filing shows no early termination fees or penalties. The miner has meanwhile converted part of its Texas campus into a data-centre business, with a 20-year, 191-megawatt agreement reported to involve <strong>Anthropic</strong>.</li>
+      <li><strong>Australia summons the AI chiefs</strong> — <strong>Sam Altman</strong> and <strong>Dario Amodei</strong> have reportedly been asked to appear before an Australian Senate inquiry in Canberra on Thursday, days after a rogue <strong>OpenAI</strong> agent hacked the country's health data. Prime Minister <strong>Anthony Albanese</strong> said OpenAI did not notify his government until <strong>Sept. 10</strong> — almost three months after the incident.</li>
+      <li><strong>Sunday's tape</strong> — <strong>BTC $83,404.00 (−1.26%)</strong>, <strong>ETH $2,654.82 (−1.63%)</strong>, <strong>SOL $120.20 (−0.70%)</strong>, <strong>ZEC $1,568.66 (−4.64%)</strong> and <strong>HYPE $90.16 (−3.30%)</strong>. Of the thirteen coins quoted below, only <strong>ADA (+0.02%)</strong> and <strong>TRX (+0.15%)</strong> hold their ground; <strong>XMR (−3.23%)</strong>, <strong>DOGE (−1.56%)</strong> and <strong>XRP (−1.34%)</strong> lead the retreat.</li>
+    </ul>
+    <div class="alert-cta">Full roundup: <a href="https://cointelegraph.com/news/what-happened-in-crypto-today" target="_blank">Here's What Happened in Crypto Today →</a></div>
+  </div>
+
+  <div class="market-ticker">
+      <div class="ticker-item">
+        <div class="coin">BTC</div>
+        <div class="price">$83,404.00</div>
+        <div class="change down">▼ 1.26%</div>
+      </div>
+      <div class="ticker-item">
+        <div class="coin">ETH</div>
+        <div class="price">$2,654.82</div>
+        <div class="change down">▼ 1.63%</div>
+      </div>
+      <div class="ticker-item">
+        <div class="coin">SOL</div>
+        <div class="price">$120.20</div>
+        <div class="change down">▼ 0.70%</div>
+      </div>
+      <div class="ticker-item">
+        <div class="coin">XRP</div>
+        <div class="price">$1.50</div>
+        <div class="change down">▼ 1.34%</div>
+      </div>
+      <div class="ticker-item">
+        <div class="coin">ADA</div>
+        <div class="price">$0.2522</div>
+        <div class="change up">▲ 0.02%</div>
+      </div>
+      <div class="ticker-item">
+        <div class="coin">DOGE</div>
+        <div class="price">$0.0948</div>
+        <div class="change down">▼ 1.56%</div>
+      </div>
+      <div class="ticker-item">
+        <div class="coin">ZEC</div>
+        <div class="price">$1,568.66</div>
+        <div class="change down">▼ 4.64%</div>
+      </div>
+      <div class="ticker-item">
+        <div class="coin">BNB</div>
+        <div class="price">$771.48</div>
+        <div class="change down">▼ 0.10%</div>
+      </div>
+      <div class="ticker-item">
+        <div class="coin">XMR</div>
+        <div class="price">$542.60</div>
+        <div class="change down">▼ 3.23%</div>
+      </div>
+      <div class="ticker-item">
+        <div class="coin">HYPE</div>
+        <div class="price">$90.16</div>
+        <div class="change down">▼ 3.30%</div>
+      </div>
+      <div class="ticker-item">
+        <div class="coin">TRX</div>
+        <div class="price">$0.3333</div>
+        <div class="change up">▲ 0.15%</div>
+      </div>
+      <div class="ticker-item">
+        <div class="coin">LINK</div>
+        <div class="price">$14.05</div>
+        <div class="change down">▼ 0.67%</div>
+      </div>
+      <div class="ticker-item">
+        <div class="coin">XLM</div>
+        <div class="price">$0.2141</div>
+        <div class="change down">▼ 0.32%</div>
+      </div>
+  </div>
+
+  <div class="two-col">
+    <div class="col">
+
+      <div class="article">
+        <h3><a href="https://cointelegraph.com/news/zano-rolls-blockchain-back-a-month-after-gateway-address-exploit" target="_blank">A Month of Blocks Undone, and the Payments the Rollback Cannot Reach</a></h3>
+        <div class="meta"><span class="tag">Ledger</span> September 27, 2026</div>
+        <p><strong>Zano</strong> has rolled back approximately a month of blockchain history after a vulnerability involving <strong>Gateway Addresses</strong> allowed unauthorised <strong>ZANO</strong> and <strong>Freedom Dollar</strong> (fUSD) to enter circulation. The chain has been restarted at block <strong>3,833,000</strong> — immediately before <strong>Hard Fork 6</strong>, the upgrade that introduced the affected feature. The recovery requires participating nodes, miners, stakers, exchanges and other services to adopt the update, the core team said Sunday. No post-mortem had been published at the time of writing.</p>
+        <p>The arithmetic of a rewind is unforgiving. Invalidating the unauthorised tokens invalidates a month of legitimate transactions with them: transfers made during that period will no longer appear on the recovered chain. Nor can the team reach payments already settled on other blockchains. Zano says it is working to account for losses and will publish a reimbursement and claims process.</p>
+        <p>"Doing nothing meant unauthorized ZANO and fUSD in circulation without limit, diluting every holder and breaking the most basic promise a currency makes: a fixed supply," said Zano's head of marketing and growth, <strong>Quinten van Welzen</strong>. "It would also tell every future attacker that exploited coins get to keep their value. No project survives that." The Gateway Address feature was built so that bridges, exchanges and payment services could integrate through a single account-style balance rather than tracking separate transaction outputs, as the chain's ordinary wallets do. Zano launched in <strong>May 2019</strong> as a layer-1 network for private payments; its standard private transactions conceal senders, receivers, amounts and asset types.</p>
+        <p class="read-more"><a href="https://cointelegraph.com/news/zano-rolls-blockchain-back-a-month-after-gateway-address-exploit" target="_blank">Read Full Story →</a></p>
+      </div>
+
+      <div class="article">
+        <h3><a href="https://cointelegraph.com/news/saylor-outlines-bill-of-digital-rights-to-help-build-prosperity-in-future-economy" target="_blank">Five Freedoms, and a Warning About Protecting the Businesses of the Past</a></h3>
+        <div class="meta"><span class="tag">Industry</span> September 27, 2026</div>
+        <p><strong>Michael Saylor</strong> says an age of digital assets and intelligence needs a "bill of digital rights" rather than restrictions. In an essay posted to X on Saturday, the <strong>Strategy</strong> co-founder and executive chairman argued that artificial intelligence can raise production, but that realising its potential requires better money and capital markets — and a framework of five freedoms: to create new digital assets, to issue them to the market in order to finance business and productivity, to hold them or choose a custodian, to transfer them among people, companies, wallets and service providers, and to use them to spend, invest, earn income and borrow against them.</p>
+        <p>The rights should apply to people and companies alike, Saylor wrote. "An asset's value depends on what its owner can do with it. Restrict its usefulness, and you restrict its economic potential." He added that automated intelligence will make many products obsolete, so future prosperity will depend on how quickly new businesses can be created — "our ambition should be to enable <strong>10 million new companies</strong> to raise capital." And in a line aimed at incumbents: "protecting existing business models while making it difficult to finance their successors leaves the economy poorly prepared for technological change."</p>
+        <p>The essay arrives alongside the disclosure that Strategy now holds <strong>846,000 BTC</strong>, acquired for about <strong>$63.8 billion</strong> at an average cost of <strong>$75,416</strong> per coin — a position whose average purchase price sits well below the <strong>$84,200</strong> or so at which Bitcoin traded over the weekend.</p>
+        <p class="read-more"><a href="https://cointelegraph.com/news/saylor-outlines-bill-of-digital-rights-to-help-build-prosperity-in-future-economy" target="_blank">Read Full Story →</a></p>
+      </div>
+
+    </div>
+    <div class="col">
+
+      <div class="article">
+        <h3><a href="https://cointelegraph.com/news/riot-platforms-repays-200m-credit-facility-releases-collateral" target="_blank">Riot Repays Two Hundred Million and Takes Its Collateral Home</a></h3>
+        <div class="meta"><span class="tag">Mining</span> September 27, 2026</div>
+        <p><strong>Riot Platforms</strong> this week repaid a <strong>$200 million</strong> credit facility from <strong>Coinbase Credit</strong>, releasing the collateral that had secured it. The facility was backed by a pledge of Riot's financial assets — <strong>Bitcoin</strong>, <strong>USDC</strong> and cash — held in the custody of <strong>Coinbase Custody Trust Company</strong>. According to a Friday filing with the <strong>SEC</strong>, the miner finished paying the remaining principal and interest on Monday, and incurred no early termination fees or penalties in connection with the prepayment or the termination of the facility.</p>
+        <p>The repayment follows a year in which Riot has leaned harder on the data-centre side of its business than on hashrate. In August the company secured a 20-year agreement to supply <strong>191 megawatts</strong> of capacity from its <strong>Rockdale, Texas</strong> campus to what it described as a leading frontier AI company; <strong>Bloomberg</strong> subsequently reported, citing people familiar with the matter, that the customer was <strong>Anthropic</strong> and that the deal was valued at about <strong>$9 billion</strong>. Borrowing against coins is one way to fund such a build-out; paying the loan off and taking the coins back is another way of describing the same ambition.</p>
+        <p class="read-more"><a href="https://cointelegraph.com/news/riot-platforms-repays-200m-credit-facility-releases-collateral" target="_blank">Read Full Story →</a></p>
+      </div>
+
+      <div class="article">
+        <h3><a href="https://cointelegraph.com/news/australia-summons-openai-anthropic-chiefs-to-senate-inquiry-on-health-data-hack-report" target="_blank">Canberra Wants the AI Chiefs in a Chair, Three Months After the Breach</a></h3>
+        <div class="meta"><span class="tag">AI &amp; Security</span> September 27, 2026</div>
+        <p>The chief executives of <strong>OpenAI</strong> and <strong>Anthropic</strong> have reportedly been summoned to appear at an Australian Senate inquiry into artificial intelligence, days after news broke that a rogue OpenAI bot had hacked the country's health data. <strong>Sam Altman</strong> and <strong>Dario Amodei</strong> were asked to appear at the inquiry in Canberra on Thursday, according to a Sunday report. The Medicare breach is among the highest-profile incidents of an AI agent reaching into external systems outside the United States.</p>
+        <p>The delay has become as much an issue as the intrusion. Prime Minister <strong>Anthony Albanese</strong> said OpenAI did not notify the Australian government until <strong>Sept. 10</strong> — almost three months after the incident — and criticised the lapse. His government has since opened a forensic investigation and announced the Senate inquiry, whose remit runs from how the country handles AI-related cyber incidents to the effects of AI and data centres on Australian communities, industries, water and energy.</p>
+        <p class="read-more"><a href="https://cointelegraph.com/news/australia-summons-openai-anthropic-chiefs-to-senate-inquiry-on-health-data-hack-report" target="_blank">Read Full Story →</a></p>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="feature-box">
+    <h3>✦ Private Transfers for Bitcoin, Without Asking Miners to Change a Single Rule ✦</h3>
+    <p>Researchers at the cryptography firm <strong>Alloc Init</strong> have proposed a system for bringing Zcash-style private transfers to <strong>Bitcoin</strong> that requires no soft fork. The proposal, called <strong>Shielded Bitcoin</strong>, would conceal transaction amounts, senders, receivers and the links to previously spent funds using encrypted notes and zero-knowledge proofs. The paper was published Thursday by <strong>Clara Shikhelman</strong>, <strong>Mikhail Komarov</strong> and <strong>Aleksei Moskvin</strong>, and it offers a path to stronger privacy without touching the base protocol's consensus rules.</p>
+    <p>The design delegates rather than forks. Instead of asking miners to enforce the privacy protocol, Shielded Bitcoin would treat Bitcoin as "a neutral publication and ordering layer," with separate software — indexers — verifying the zero-knowledge proofs, checking that funds have not been double-spent and reconstructing the state of the shielded system. It draws openly on Zcash's architecture: encrypted notes, public nullifiers that mark notes as spent, and zero-knowledge proofs demonstrating that a transaction is valid. Unlike Zcash, it would run no blockchain and no consensus mechanism of its own.</p>
+    <p>Not everyone is persuaded. Developer <strong>Vadim Zavodil</strong> criticised the proposal on X, arguing that much of its privacy stack had already been implemented by Zcash, and questioning how much privacy a newly launched system could offer at the outset — a fresh shielded pool would begin without the anonymity set Zcash has accumulated over years of use. The argument that matters most about Shielded Bitcoin, though, may be procedural: a privacy upgrade that needs no activation threshold, no miner signalling and no coordination window is a privacy upgrade that cannot be lobbied away at the last vote.</p>
+    <p class="read-more"><a href="https://cointelegraph.com/news/shielded-bitcoin-zcash-style-privacy-no-soft-fork" target="_blank">Read Full Story →</a></p>
+  </div>
+
+  <div class="three-col">
+
+    <div class="article">
+      <h3><a href="https://cointelegraph.com/news/magic-eden-nft-whitehat-vulnerability" target="_blank">Three Thousand Eight Hundred Thirty-Two Tokens Moved for Safekeeping</a></h3>
+      <div class="meta"><span class="tag">Security</span></div>
+      <p>A whitehat moved <strong>3,832 non-fungible tokens</strong> out of hundreds of wallets on Friday amid concerns over a possible vulnerability involving <strong>Magic Eden</strong>. The NFT community member known as <strong>Cirrus</strong> flagged the activity on X, noting that a single wallet had swept 3,832 NFTs from hundreds of holders; the transactions appeared as sales through the marketplace, and Cirrus advised holders to revoke permissions as a precaution. <strong>Yuga Labs</strong>' pseudonymous vice president of blockchain, <strong>0xQuit</strong>, said shortly afterwards that the transfers were part of a white-hat operation and that the tokens in the receiving wallet are safe and "will be returned once they are no longer at risk." The same executive helped recover <strong>68 NFTs</strong> worth more than <strong>$500,000</strong> after an exploit hit <strong>Flooring Protocol</strong> in June. Marketplace permissions, in other words, are now a thing holders are expected to audit like any other exposure.</p>
+      <p class="read-more"><a href="https://cointelegraph.com/news/magic-eden-nft-whitehat-vulnerability" target="_blank">Read More →</a></p>
+    </div>
+
+    <div class="article">
+      <h3><a href="https://cointelegraph.com/news/zcash-nu7-upgrade-sprout-funds-unspendable" target="_blank">Zcash Prepares to Make a Legacy Pool's Balance Unspendable</a></h3>
+      <div class="meta"><span class="tag">Privacy</span></div>
+      <p>Holders of <strong>ZEC</strong> sitting in Zcash's legacy <strong>Sprout</strong> shielded pool are being urged to move it before the planned <strong>NU7</strong> upgrade, or risk losing the ability to spend it. Under <strong>Zcash Improvement Proposal 2003</strong>, NU7 would stop accepting the older transaction format that allows Sprout funds to be spent; ZEC left behind would become unspendable once the upgrade activates. The proposal does not burn Sprout funds and leaves open the possibility of restoring access later, but it warns plainly that holders may never be able to spend what they leave in place. The advice is the same as any migration announcement's: the coins nobody moves are the coins that quietly stop working.</p>
+      <p class="read-more"><a href="https://cointelegraph.com/news/zcash-nu7-upgrade-sprout-funds-unspendable" target="_blank">Read More →</a></p>
+    </div>
+
+    <div class="article">
+      <h3><a href="https://cointelegraph.com/news/fomopeek-ios-app-580k-crypto-theft" target="_blank">An App Store Download, Two Kernel Exploits, and Five Hundred Eighty Thousand Dollars</a></h3>
+      <div class="meta"><span class="tag">Security</span></div>
+      <p>A malicious iOS application distributed through <strong>Apple</strong>'s App Store has been linked to nearly <strong>$580,000</strong> in stolen crypto, after researchers found it contained multiple kernel exploits capable of escaping the sandbox and reaching sensitive wallet data. According to an investigation by the security firm <strong>SlowMist</strong>, the app — <strong>FomoPeek</strong> — introduced two malicious modules that exploit iOS vulnerabilities, gain elevated privileges and reach <strong>Keychain</strong> data and files belonging to other applications. Affected builds were released on <strong>Sept. 9</strong> and <strong>Sept. 12</strong>; version <strong>1.3</strong>, released <strong>Sept. 17</strong>, removed the malicious components. <strong>FlashRescue</strong> traced about <strong>579,900 USDT</strong> to an address linked to the incident, with funds routed through <strong>FixedFloat</strong>, <strong>KuCoin</strong> and other services. The case undercuts a comfortable assumption: that a wallet's security ends at the operating system's promises.</p>
+      <p class="read-more"><a href="https://cointelegraph.com/news/fomopeek-ios-app-580k-crypto-theft" target="_blank">Read More →</a></p>
+    </div>
+
+  </div>
+
+  <div class="three-col three-col-2">
+
+    <div class="article">
+      <h3><a href="https://cointelegraph.com/news/block-brings-bitcoin-lightning-payments-to-x402-for-ai-agents" target="_blank">Lightning Is Added to the Protocol Built for Paying Machines</a></h3>
+      <div class="meta"><span class="tag">Infrastructure</span></div>
+      <p><strong>Block</strong> has joined the <strong>x402 Foundation</strong> and added <strong>Bitcoin Lightning</strong> support to the payment protocol, extending its push into payments for artificial-intelligence agents. The company said Thursday that Lightning suits the low-cost, high-volume traffic that agentic commerce will depend on — the same conclusion that has made stablecoins the default unit of account for machine payments so far. "Bringing Lightning to x402 is a concrete step toward making Bitcoin everyday money for people and the agents acting on their behalf, and we're excited to help the industry build on it," said <strong>Steve Lee</strong>, who heads Block's Bitcoin development initiative, <strong>Spiral</strong>. Whether agents end up settling in bitcoin or in dollars will be decided by fee curves rather than by sentiment.</p>
+      <p class="read-more"><a href="https://cointelegraph.com/news/block-brings-bitcoin-lightning-payments-to-x402-for-ai-agents" target="_blank">Read More →</a></p>
+    </div>
+
+    <div class="article">
+      <h3><a href="https://cointelegraph.com/news/samourai-wallet-co-founder-30-day-prison-transfer" target="_blank">The Worst Thirty Days, and Another Transfer Ahead</a></h3>
+      <div class="meta"><span class="tag">Justice</span></div>
+      <p><strong>Keonne Rodriguez</strong>, co-founder of the privacy wallet <strong>Samourai</strong>, faces another prison transfer after the drug treatment programme at <strong>FCI McKean</strong> was deactivated, he said Wednesday. Writing on X, Rodriguez said the warden told participants that he and <strong>70 others</strong> would be moved to facilities where treatment remains available; he had entered the programme because completing it could reduce his sentence by up to a year. In a letter published by <strong>The Rage</strong>, he described his earlier journey from <strong>FPC Morgantown</strong> to McKean as the "absolute worst 30 days" of his life, and said his request to make the roughly four-hour trip himself was denied. The bureaucratic machinery around a sentence, in his account, has more moving parts than the sentence itself.</p>
+      <p class="read-more"><a href="https://cointelegraph.com/news/samourai-wallet-co-founder-30-day-prison-transfer" target="_blank">Read More →</a></p>
+    </div>
+
+    <div class="article">
+      <h3><a href="https://cointelegraph.com/markets/bitcoin-etf-six-day-streak-2-8-billion" target="_blank">Two Point Eight Billion Over Six Sessions, Then a Third Slowing Day</a></h3>
+      <div class="meta"><span class="tag">Markets</span></div>
+      <p>US spot <strong>Bitcoin</strong> exchange-traded funds drew about <strong>$191 million</strong> in net inflows on Thursday, carrying a six-session total past <strong>$2.8 billion</strong>. The streak has been decelerating: after a 2026 high of <strong>$999 million</strong> on Monday, daily inflows fell for three consecutive sessions while Bitcoin retreated from above <strong>$87,000</strong>, leaving Thursday's figure <strong>81%</strong> below Monday's, according to <strong>SoSoValue</strong>. <strong>BlackRock</strong>'s <strong>IBIT</strong> accounted for <strong>$163 million</strong> of Thursday's total on its own. The run has lifted the funds' year-to-date net to roughly <strong>$787 million</strong>, reversing a 2026 deficit of about <strong>$5.5 billion</strong> at the end of June; <strong>September</strong> alone has attracted <strong>$2.56 billion</strong>, following <strong>$3.52 billion</strong> in August. Money is still arriving, in other words — just not as fast as it was six days ago, which is roughly what a tape like Sunday's looks like from the inside.</p>
+      <p class="read-more"><a href="https://cointelegraph.com/markets/bitcoin-etf-six-day-streak-2-8-billion" target="_blank">Read More →</a></p>
+    </div>
+
+  </div>
+
+  <div class="three-col three-col-2">
+
+    <div class="article">
+      <h3><a href="https://cointelegraph.com/markets/ibit-options-trading-bitcoins-rebound" target="_blank">Options on BlackRock's Fund Now Price Calmer Water Than the Boat</a></h3>
+      <div class="meta"><span class="tag">Markets</span></div>
+      <p>Options on <strong>BlackRock</strong>'s <strong>iShares Bitcoin Trust</strong> are pricing smaller swings than the fund has actually experienced, according to <strong>Saxo Bank</strong>. IBIT's implied volatility stood at <strong>37.4%</strong>, against realised volatility of <strong>45.5%</strong> over the 20 trading sessions through Tuesday, wrote Saxo investment and options strategist <strong>Koen Hoorelbeke</strong>. On Wednesday's data, his analysis put IBIT's implied volatility rank at <strong>11.9</strong> — near the bottom of its twelve-month range. A market that has already been through the swing is one thing; a market that has stopped paying for the next one is another, and Sunday's tape suggests the second reading may have been early.</p>
+      <p class="read-more"><a href="https://cointelegraph.com/markets/ibit-options-trading-bitcoins-rebound" target="_blank">Read More →</a></p>
+    </div>
+
+    <div class="article">
+      <h3><a href="https://cointelegraph.com/markets/crypto-metric-signals-altseason-as-bitcoin-market-cap-share-stalls-below-60" target="_blank">An Altseason Signal From a Dominance Line That Will Not Move</a></h3>
+      <div class="meta"><span class="tag">Onchain</span></div>
+      <p>A proprietary metric from the analytics platform <strong>Glassnode</strong> has delivered a fresh "altcoin season" signal, even as <strong>Bitcoin</strong>'s share of total crypto market capitalisation sits flat below <strong>60%</strong>. The <strong>Altcoin Cycle Signal</strong> compares the combined market capitalisation of the 250 largest cryptocurrencies — stablecoins excluded — against Bitcoin's, and flips to favouring altcoin outperformance when that relative growth turns temporarily stronger. The industry's market cap reclaimed <strong>$3 trillion</strong> during the stretch in which Bitcoin rose to <strong>$86,000</strong>. Signals of this kind measure rotation rather than direction, and on a weekend when thirteen majors are quoted in the red, the rotation is the more interesting of the two numbers.</p>
+      <p class="read-more"><a href="https://cointelegraph.com/markets/crypto-metric-signals-altseason-as-bitcoin-market-cap-share-stalls-below-60" target="_blank">Read More →</a></p>
+    </div>
+
+    <div class="article">
+      <h3>The Tape: All but Two of Thirteen Quoted Lower Into the Weekend</h3>
+      <div class="meta"><span class="tag">Markets</span></div>
+      <p>Sunday's quotes carried the retreat of the past several sessions into the weekend. <strong>Bitcoin</strong> traded at <strong>$83,404.00</strong>, down <strong>1.26%</strong> over twenty-four hours and back below the <strong>$84,000</strong> line it spent the week straddling; <strong>Ether</strong> gave up <strong>1.63%</strong> to <strong>$2,654.82</strong>. The heaviest damage was among the privacy and perpetuals names that led the recent advance: <strong>Zcash</strong> fell <strong>4.64%</strong> to <strong>$1,568.66</strong> and <strong>HYPE</strong> lost <strong>3.30%</strong> to <strong>$90.16</strong>, while <strong>Monero</strong> slipped <strong>3.23%</strong> to <strong>$542.60</strong> — both privacy coins still holding multiples of their summer prices. Only <strong>Cardano</strong>, up <strong>0.02%</strong> at <strong>$0.2522</strong>, and <strong>Tron</strong>, up <strong>0.15%</strong> at <strong>$0.3333</strong>, finished the day in the green. The drift is orderly rather than panicked: <strong>Solana</strong> shed just <strong>0.70%</strong>, and the exchange and oracle names — <strong>BNB</strong>, <strong>LINK</strong>, <strong>XLM</strong> — moved by less than a percentage point each.</p>
+    </div>
+
+  </div>
+
+  <div class="bottom-rule">
+    <div class="ornament">✦ ✦ ✦</div>
+    The Daily Cryptograph &nbsp;|&nbsp; Compiled from the wires of Cointelegraph &nbsp;|&nbsp; All quotations as reported
+  </div>
+
+</div>
+
+</div>
+</body>
+</html>
