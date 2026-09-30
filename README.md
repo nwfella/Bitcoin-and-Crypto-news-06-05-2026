@@ -4,6 +4,12 @@
 
 An old-timey newspaper-style digest of today's top Bitcoin and cryptocurrency stories, built in the aesthetic of a Victorian-era broadsheet.
 
+## 📖 Read it live
+
+**Latest edition:** https://nwfella.github.io/Bitcoin-and-Crypto-news-06-05-2026/
+
+**Archive:** https://github.com/nwfella/Bitcoin-and-Crypto-news-06-05-2026/tree/master/archive — one dated edition per day at `archive/YYYY-MM-DD/index.html`
+
 ### Stories Covered
 
 | # | Headline |
@@ -33,7 +39,8 @@ The podcast is auto-generated daily alongside the newspaper.
 
 ### Viewing
 
-Open **index.html** in any browser. No build step or server required.
+- **Live:** https://nwfella.github.io/Bitcoin-and-Crypto-news-06-05-2026/ — GitHub Pages, served from `index.html` on `master`
+- **Offline:** open `index.html` in any browser. No build step or server required.
 
 ### Design
 
